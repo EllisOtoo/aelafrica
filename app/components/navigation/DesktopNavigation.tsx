@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import type { NavigationLink } from "./types";
@@ -50,9 +51,17 @@ export default function DesktopNavigation({
       <div className="flex items-center justify-between px-6 py-4 lg:px-10">
         <Link
           href="#home"
-          className="text-sm font-semibold uppercase tracking-[0.3em] text-zinc-700 transition hover:text-zinc-900"
+          className="flex items-center transition hover:opacity-90"
         >
-          Alpha Engineering
+          <Image
+            src="/images/ael-logo-dark.png"
+            alt="Alpha Engineering Limited"
+            width={200}
+            height={47}
+            className="h-10 w-auto"
+            priority
+            unoptimized
+          />
         </Link>
         <div className="flex items-center gap-4">
           <button

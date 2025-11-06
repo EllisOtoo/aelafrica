@@ -8,7 +8,7 @@ const STATS = [
 const StatsBar = () => {
   return (
     <section className="bg-[#2C1404] text-white">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-16 sm:px-8 md:px-10 md:gap-12 md:py-20 lg:px-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-16 sm:px-8 md:px-10 md:gap-12 md:py-8 lg:px-16">
         <div className="relative">
           <span className="pointer-events-none absolute inset-y-0 left-1/2 z-0 block w-px -translate-x-1/2 bg-[#4A2D0C] lg:hidden" />
           <span className="pointer-events-none absolute inset-x-0 top-1/2 z-0 block h-px -translate-y-1/2 bg-[#4A2D0C] lg:hidden" />
@@ -26,7 +26,9 @@ const StatsBar = () => {
                   <div className="h-px w-12 bg-[#EAA315]" aria-hidden="true" />
                 </dt>
                 <dd className="font-semibold tracking-tight text-white">
-                  <span className="text-5xl sm:text-6xl lg:text-7xl">{stat.value}</span>
+                  <span className="text-5xl sm:text-6xl lg:text-7xl">
+                    {stat.value}
+                  </span>
                 </dd>
               </div>
             ))}

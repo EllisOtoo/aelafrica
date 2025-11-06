@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #ffffff;
+  --background: #f5efe8;
+  --foreground: #000;
   --color-russet: #7f4511;
   --color-harvest-gold: #eaa315;
   --color-text-muted: rgba(255, 255, 255, 0.68);

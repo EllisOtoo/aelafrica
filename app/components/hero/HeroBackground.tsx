@@ -1,5 +1,5 @@
-const desktopBackground = "url('/images/hero-desktop.jpg')";
-const mobileBackground = "url('/images/hero-mobile.jpg')";
+const desktopBackground = "url('/images/banner.png')";
+const mobileBackground = "url('/images/banner.png')";
 
 /**
  * Renders responsive background imagery with gradient overlays so the hero copy stays legible.
@@ -18,7 +18,8 @@ const HeroBackground = () => {
         style={{ backgroundImage: mobileBackground }}
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-black/80 md:bg-gradient-to-r md:from-black/90 md:via-black/70 md:to-black/35" />
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-black/80 md:bg-gradient-to-r md:from-black/90 md:via-black/70 md:to-black/35" /> */}
+      <div className="absolute inset-0" />
       <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
     </div>
   );

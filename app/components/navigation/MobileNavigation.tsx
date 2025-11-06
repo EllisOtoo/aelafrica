@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { NavigationLink } from "./types";
 
@@ -21,9 +22,17 @@ export default function MobileNavigation({
       <div className="flex items-center justify-between px-5 py-3 sm:px-6">
         <Link
           href="#home"
-          className="text-xs font-semibold uppercase tracking-[0.32em] text-zinc-700 transition hover:text-zinc-900"
+          className="flex items-center transition hover:opacity-90"
         >
-          Alpha Engineering
+          <Image
+            src="/images/ael-logo-dark.png"
+            alt="Alpha Engineering Limited"
+            width={200}
+            height={47}
+            className="h-8 w-auto"
+            priority
+            unoptimized
+          />
         </Link>
         <div className="flex items-center gap-3">
           <button
@@ -31,7 +40,9 @@ export default function MobileNavigation({
             onClick={onToggle}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-white/60 bg-white/70 transition hover:scale-[1.05] hover:border-white/70"
             aria-expanded={isOpen}
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
           >
             <span
               aria-hidden="true"

@@ -48,9 +48,11 @@ const Footer = () => {
               <Image
                 src="/images/ael-logo-light.png"
                 alt="Alpha Engineering Limited"
-                width={1967}
-                height={462}
-                className="h-12 w-auto"
+                width={220}
+                height={52}
+                priority
+                sizes="220px"
+                className="h-auto w-auto max-w-[220px]"
               />
               <span className="text-xs font-semibold uppercase tracking-[0.32em] text-[#F3C15B]">
                 Alpha Engineering Limited

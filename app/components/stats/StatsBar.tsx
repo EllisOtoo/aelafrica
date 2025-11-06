@@ -12,11 +12,14 @@ const StatsBar = () => {
         <div className="relative">
           <span className="pointer-events-none absolute inset-y-0 left-1/2 z-0 block w-px -translate-x-1/2 bg-[#4A2D0C] lg:hidden" />
           <span className="pointer-events-none absolute inset-x-0 top-1/2 z-0 block h-px -translate-y-1/2 bg-[#4A2D0C] lg:hidden" />
-          <dl className="relative z-10 grid grid-cols-2 gap-0 lg:grid-cols-4 lg:gap-12">
+          <span className="pointer-events-none absolute inset-y-[12%] left-1/4 hidden w-px -translate-x-1/2 bg-[#4A2D0C] lg:block" />
+          <span className="pointer-events-none absolute inset-y-[12%] left-1/2 hidden w-px -translate-x-1/2 bg-[#4A2D0C] lg:block" />
+          <span className="pointer-events-none absolute inset-y-[12%] left-3/4 hidden w-px -translate-x-1/2 bg-[#4A2D0C] lg:block" />
+          <dl className="relative z-10 grid grid-cols-2 gap-0 lg:grid-cols-4 lg:gap-0">
             {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col items-start gap-4 px-6 py-12 text-left sm:px-10 lg:px-0"
+                className="flex flex-col items-start gap-4 px-6 py-12 text-left sm:px-10 lg:px-8 lg:py-14"
               >
                 <dt className="flex flex-col items-start gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#EAA315]">
                   <span>{stat.label}</span>

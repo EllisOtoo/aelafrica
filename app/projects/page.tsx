@@ -35,6 +35,7 @@ const projects = [
     accent: "#EAB308",
   },
 ];
+
 const Projects = () => {
   return (
     <div className="">
@@ -43,8 +44,12 @@ const Projects = () => {
         caption="A Legacy of Landmarks"
         subCaption="For over 40 years, we have delivered projects that shape communities and drive progress. Explore a selection of our completed works that stand as a testament to our commitment to quality, safety, and engineering excellence."
       />
-      <HorizontalProjectAccordion items={projects} />
-      <MobileProjectCarousel items={projects} />
+      <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 md:px-10 lg:px-16">
+        <HorizontalProjectAccordion items={projects} />
+      </div>
+      <div className="mx-auto w-full max-w-5xl px-5 pb-12 sm:px-8 md:px-10 lg:px-0">
+        <MobileProjectCarousel items={projects} />
+      </div>
       <ProjectsMasonry />
     </div>
   );

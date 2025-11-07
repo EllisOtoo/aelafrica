@@ -5,11 +5,11 @@ import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 
 const primaryLinks = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const secondaryLinks = [

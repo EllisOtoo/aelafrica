@@ -21,7 +21,7 @@ export default function MobileNavigation({
     <div className="flex w-full flex-col md:hidden">
       <div className="flex items-center justify-between px-5 py-3 sm:px-6">
         <Link
-          href="#home"
+          href="/"
           className="flex items-center transition hover:opacity-90"
         >
           <Image
@@ -63,7 +63,7 @@ export default function MobileNavigation({
             </span>
           </button>
           <Link
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center rounded-full bg-[#EAA315] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_6px_14px_rgba(234,163,21,0.3)] transition hover:bg-[#f0b83e]"
           >
             Contact

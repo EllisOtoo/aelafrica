@@ -44,6 +44,15 @@ const Projects = () => {
         caption="A Legacy of Landmarks"
         subCaption="For over 40 years, we have delivered projects that shape communities and drive progress. Explore a selection of our completed works that stand as a testament to our commitment to quality, safety, and engineering excellence."
       />
+      <div className="mx-auto w-full max-w-6xl px-5 pb-6 sm:px-8 md:px-10 lg:px-16">
+        <a
+          href="/projects/portfolio"
+          className="inline-flex items-center gap-3 rounded-full border border-[#E0D8CC] bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-[#7F4511] shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition hover:bg-[#FFF8EF]"
+        >
+          Explore full portfolio
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
       <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 md:px-10 lg:px-16">
         <HorizontalProjectAccordion items={projects} />
       </div>

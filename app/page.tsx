@@ -2,6 +2,7 @@ import Hero from "./components/hero/Hero";
 import ClientsSection from "./components/home/ClientsSection";
 import MissionCta from "./components/home/MissionCta";
 import NewsletterSignup from "./components/home/NewsletterSignup";
+import WhyChooseUs from "./components/home/WhyChooseUs";
 import StatsBar from "./components/stats/StatsBar";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <StatsBar />
       <MissionCta />
       <ClientsSection />
+      <WhyChooseUs />
       <NewsletterSignup />
     </main>
   );

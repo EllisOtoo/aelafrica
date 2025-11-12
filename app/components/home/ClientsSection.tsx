@@ -1,14 +1,59 @@
 "use client";
 
+import Image from "next/image";
 import "@splidejs/react-splide/css";
 import { Splide, SplideSlide, SplideProps } from "@splidejs/react-splide";
 
-const CLIENT_LOGOS = [
-  { name: "World Trade Centre Accra" },
-  { name: "Société Générale" },
-  { name: "Ministry of Youth & Sports" },
-  { name: "Bank of Ghana" },
-  { name: "Ashesi University" },
+type Client = {
+  name: string;
+  logo?: {
+    src: string;
+    width: number;
+    height: number;
+  };
+};
+
+const CLIENT_LOGOS: Client[] = [
+  {
+    name: "World Trade Centre Accra",
+    logo: {
+      src: "/images/clients/wtc-accra-logo.png",
+      width: 450,
+      height: 250,
+    },
+  },
+  {
+    name: "Société Générale",
+    logo: {
+      src: "/images/clients/sg-bank-logo.png",
+      width: 450,
+      height: 250,
+    },
+  },
+  {
+    name: "Ministry of Youth & Sports",
+    logo: {
+      src: "/images/clients/mys-logo.png",
+      width: 450,
+      height: 250,
+    },
+  },
+  {
+    name: "Bank of Ghana",
+    logo: {
+      src: "/images/clients/bank-of-ghana-logo.png",
+      width: 450,
+      height: 250,
+    },
+  },
+  {
+    name: "Ashesi University",
+    logo: {
+      src: "/images/clients/ashesi-logo.png",
+      width: 450,
+      height: 250,
+    },
+  },
   { name: "Ghana Airports Company" },
   { name: "Ghana Ports & Harbours Authority" },
   { name: "Vodafone Ghana" },
@@ -41,7 +86,7 @@ const baseSliderOptions: SplideProps["options"] = {
 const ClientsSection = () => {
   const midIndex = Math.ceil(CLIENT_LOGOS.length / 2);
   const topRow = CLIENT_LOGOS.slice(0, midIndex);
-  const bottomRow = CLIENT_LOGOS.slice(midIndex);
+  const bottomRow = CLIENT_LOGOS.slice(0, midIndex);
 
   return (
     <section className="text-white">
@@ -95,30 +140,50 @@ const ClientsSection = () => {
           >
             {topRow.map((client) => (
               <SplideSlide key={`client-top-${client.name}`}>
-                <div className="flex h-24 w-full items-center justify-center rounded-2xl border border-black/5  px-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#2C1404] sm:h-24 sm:text-sm lg:h-28">
-                  <span className="mx-auto max-w-[160px] text-balance">
-                    {client.name}
-                  </span>
+                <div className="flex h-28 w-full items-center justify-center rounded-2xl border border-black/5 px-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#2C1404] sm:h-28 sm:text-sm lg:h-32">
+                  {client.logo ? (
+                    <Image
+                      src={client.logo.src}
+                      alt={client.name}
+                      width={client.logo.width}
+                      height={client.logo.height}
+                      className="h-16 w-full max-w-[200px] object-contain sm:h-20 lg:h-24"
+                    />
+                  ) : (
+                    <span className="mx-auto max-w-[160px] text-balance">
+                      {client.name}
+                    </span>
+                  )}
                 </div>
               </SplideSlide>
             ))}
           </Splide>
 
-          <Splide
+          {/* <Splide
             options={{ ...baseSliderOptions, direction: "rtl" }}
             className="clients-splide"
             aria-label="Clients marquee row alternate"
           >
             {bottomRow.map((client) => (
               <SplideSlide key={`client-bottom-${client.name}`}>
-                <div className="flex h-24 w-full items-center justify-center rounded-2xl border border-black/5 px-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#2C1404] sm:h-24 sm:text-sm lg:h-28">
-                  <span className="mx-auto max-w-[160px] text-balance">
-                    {client.name}
-                  </span>
+                <div className="flex h-28 w-full items-center justify-center rounded-2xl border border-black/5  px-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#2C1404] sm:h-28 sm:text-sm lg:h-32">
+                  {client.logo ? (
+                    <Image
+                      src={client.logo.src}
+                      alt={client.name}
+                      width={client.logo.width}
+                      height={client.logo.height}
+                      className="h-16 w-full max-w-[200px] object-contain sm:h-20 lg:h-24"
+                    />
+                  ) : (
+                    <span className="mx-auto max-w-[160px] text-balance">
+                      {client.name}
+                    </span>
+                  )}
                 </div>
               </SplideSlide>
             ))}
-          </Splide>
+          </Splide> */}
         </div>
       </div>
     </section>

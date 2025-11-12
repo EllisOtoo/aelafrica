@@ -41,10 +41,8 @@ export default function Navigation() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 py-5 sm:px-6 lg:px-8 ">
       <div className="w-full max-w-6xl">
         <div
-          className={`pointer-events-auto rounded-2xl relative transition-all duration-500 ease-out backdrop-blur-2xl ${
-            isElevated
-              ? "shadow-[0_24px_60px_rgba(15,23,42,0.18)]"
-              : "shadow-[0_14px_42px_rgba(15,23,42,0.12)]"
+          className={`pointer-events-auto rounded-2xl relative transition-all duration-500 ease-out  ${
+            isElevated ? "" : ""
           }`}
         >
           <DesktopNavigation

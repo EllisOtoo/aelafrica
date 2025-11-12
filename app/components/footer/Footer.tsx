@@ -43,7 +43,7 @@ const Footer = () => {
       <div className="pointer-events-none absolute left-32 top-32 hidden h-16 w-16 rounded-xl bg-white/5 lg:block" />
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-5 py-20 sm:px-8 md:px-10 lg:px-16 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-12">
-          <div className="flex flex-col gap-6 lg:col-span-4">
+          <div className="flex flex-col gap-6 lg:col-span-5">
             <div className="flex flex-col gap-4">
               <Image
                 src="/images/ael-logo-light.png"
@@ -112,7 +112,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-3">
+          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
             {LINK_GROUPS.map((group) => (
               <div key={group.heading} className="flex flex-col gap-4">
                 <h4 className="text-sm font-semibold uppercase tracking-[0.28em] text-[#F3C15B]">
@@ -134,33 +134,6 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-5 rounded-3xl bg-[#5B2C09] px-6 py-8 shadow-lg shadow-black/10 sm:px-8 lg:col-span-3">
-            <h4 className="text-lg font-semibold leading-tight">
-              Join our newsletter for project updates
-            </h4>
-            <form className="flex flex-col gap-4" noValidate>
-              <label className="sr-only" htmlFor="newsletter-email">
-                Email address
-              </label>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  placeholder="Your email here"
-                  className="w-full rounded-full border border-white/10 bg-white/10 px-5 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#F3C15B] focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#F3C15B] px-6 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-[#2C1404] transition hover:bg-[#FFD36B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  Join
-                </button>
-              </div>
-              <span className="text-xs text-white/60">
-                By subscribing, you agree to our Privacy Policy.
-              </span>
-            </form>
-          </div>
         </div>
 
         <div className="flex justify-center">

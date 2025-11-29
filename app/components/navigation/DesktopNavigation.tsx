@@ -107,24 +107,6 @@ export default function DesktopNavigation({
                 ))}
               </ul>
             </nav>
-            <nav className="flex flex-col gap-5">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-500">
-                Stay Informed
-              </span>
-              <ul className="flex flex-col gap-3 text-lg font-medium text-zinc-800">
-                {secondaryLinks.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="transition duration-200 hover:text-zinc-600"
-                      onClick={onClose}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
 
           <div

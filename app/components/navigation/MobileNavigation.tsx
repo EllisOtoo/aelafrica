@@ -99,25 +99,6 @@ export default function MobileNavigation({
                   ))}
                 </ul>
               </div>
-
-              <div className="flex flex-col gap-3">
-                <span className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">
-                  Stay Informed
-                </span>
-                <ul className="flex flex-col gap-3 text-base font-medium text-zinc-800">
-                  {secondaryLinks.map((item) => (
-                    <li key={item.label}>
-                      <Link
-                        href={item.href}
-                        onClick={onClose}
-                        className="transition duration-200 hover:text-zinc-600"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </nav>
 
             <div

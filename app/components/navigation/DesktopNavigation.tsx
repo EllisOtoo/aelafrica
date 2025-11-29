@@ -47,7 +47,7 @@ export default function DesktopNavigation({
   );
 
   return (
-    <div className="hidden w-full flex-col md:flex">
+    <div className="relative hidden w-full flex-col md:flex">
       <div className="flex items-center justify-between px-6 py-4 lg:px-16">
         <Link
           href="/"
@@ -81,7 +81,7 @@ export default function DesktopNavigation({
       </div>
 
       <div
-        className={`px-6 transition-all duration-500 ease-out lg:px-10 ${
+        className={`absolute left-0 right-0 top-full px-6 transition-all duration-500 ease-out lg:px-10 ${
           isOpen
             ? "pointer-events-auto visible max-h-[420px] opacity-100"
             : "pointer-events-none invisible max-h-0 opacity-0"

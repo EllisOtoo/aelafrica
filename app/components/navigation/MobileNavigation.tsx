@@ -18,7 +18,7 @@ export default function MobileNavigation({
   secondaryLinks,
 }: MobileNavigationProps) {
   return (
-    <div className="flex w-full flex-col md:hidden">
+    <div className="relative flex w-full flex-col md:hidden">
       <div className="flex items-center justify-between px-5 py-3 sm:px-6">
         <Link
           href="/"
@@ -72,7 +72,7 @@ export default function MobileNavigation({
       </div>
 
       <div
-        className={`transition-all duration-500 ease-out ${
+        className={`absolute left-0 right-0 top-full transition-all duration-500 ease-out ${
           isOpen
             ? "pointer-events-auto visible max-h-[32rem] opacity-100"
             : "pointer-events-none invisible max-h-0 opacity-0"

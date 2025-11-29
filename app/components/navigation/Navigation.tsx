@@ -38,7 +38,7 @@ export default function Navigation() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 py-5 sm:px-6 lg:px-8">
+    <header className="pointer-events-none relative z-30 w-full flex justify-center px-4  sm:px-6 lg:px-8">
       <div className="w-full max-w-6xl">
         <div
           className={`pointer-events-auto rounded-2xl relative transition-all duration-500 ease-out  ${

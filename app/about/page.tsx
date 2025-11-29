@@ -91,17 +91,14 @@ export default function AboutPage() {
               Alpha Engineering Limited
             </h1>
             <p className="text-lg leading-relaxed text-[#666666]">
-              Alpha Engineering Limited is a leading plumbing and civil
-              engineering firm located at GA-288-5164, Clinton Lane, near Allied
-              Filing Station, Shiashie, Accra. For decades, we have delivered
-              exceptional services, building a strong reputation with public
-              institutions and private developers alike.
+              Alpha Engineering Limited is a plumbing and civil engineering firm
+              at GA-288-5164, Clinton Lane, near Allied Filing Station, Shiashie,
+              Accra. We deliver reliable systems for public institutions and
+              private developers.
             </p>
             <p className="text-lg leading-relaxed text-[#666666]">
-              Our long-term relationships with clients, consultants, and
-              contractors reflect our commitment to quality and satisfaction. We
-              understand the critical role reliable and efficient plumbing plays
-              in any environment.
+              Long-term relationships with clients, consultants, and contractors
+              reflect our commitment to quality, safety, and satisfaction.
             </p>
             <div className="flex flex-wrap gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-[#7F4511]">
               {focusAreas.map((area) => (
@@ -126,9 +123,8 @@ export default function AboutPage() {
             </div>
             <div className="rounded-2xl bg-[#FFF7EC] p-4 text-sm leading-relaxed text-[#7F4511]">
               <p>
-                Decades of field-tested expertise empower us to plan, build, and
-                maintain resilient systems that meet Ghana&apos;s evolving
-                infrastructure needs.
+                Decades of field-tested work help us plan, build, and maintain
+                resilient systems that meet Ghana&apos;s evolving needs.
               </p>
             </div>
             <div className="flex items-center justify-between rounded-2xl bg-[#0E1B2C] px-5 py-4 text-white">

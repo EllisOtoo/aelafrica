@@ -126,9 +126,8 @@ const ClientsSection = () => {
             Trusted by Industry Leaders
           </h2>
           <p className="mt-6 max-w-2xl text-sm font-medium leading-relaxed text-[#492505] sm:text-base">
-            We have built long-term, satisfactory relationships with clients and
-            stakeholders across the public and private sectors. Our portfolio is
-            a testament to our dependability and commitment.
+            Long-term partners across public and private sectors trust us to deliver. Our portfolio
+            shows the consistency behind that trust.
           </p>
         </div>
 

@@ -107,7 +107,7 @@ const ContactPageClient = () => {
       <section className="mx-auto w-full max-w-5xl px-5 py-16 text-center sm:px-8 md:px-10 lg:px-0">
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Get In Touch</h1>
         <p className="mt-4 text-base text-[#5c3410] sm:text-lg">
-          Tell us about your upcoming project, and our team will respond shortly.
+          Tell us about your project, and we will get back to you soon.
         </p>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-3">

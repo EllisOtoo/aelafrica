@@ -10,31 +10,31 @@ const HIGHLIGHTS = [
   {
     title: "Expertise in Plumbing and Civil Engineering",
     description:
-      "We bring a wealth of experience and technical knowledge to every engagement, from complex infrastructure development to intricate plumbing solutions executed with precision.",
+      "Seasoned plumbing and civil engineering teams for complex systems and infrastructure.",
     icon: Layers3,
   },
   {
     title: "Our Legacy",
     description:
-      "Decades of successful delivery have cemented our reputation for excellence. Each milestone demonstrates our commitment to precision, innovation, and unwavering quality benchmarks.",
+      "Decades of delivery that prove our quality, precision, and reliability.",
     icon: Sparkles,
   },
   {
     title: "Public and Private Sector Pioneers",
     description:
-      "Our portfolio spans transformative public infrastructure and cutting-edge private developments, giving us nuanced insight into diverse stakeholder needs and constraints.",
+      "Work across public infrastructure and private developments, tuned to each stakeholder.",
     icon: Building2,
   },
   {
     title: "Building Strong Relationships",
     description:
-      "Long-term partnerships with clients, consultants, and contractors keep projects aligned with shared objectives and transparent communication at every stage.",
+      "Long-term partnerships keep objectives aligned and communication clear.",
     icon: Handshake,
   },
   {
     title: "Our Commitments",
     description:
-      "We continually push boundaries, embrace innovation, and pioneer new techniques to elevate plumbing and civil engineering standards across Ghana and the sub-region.",
+      "We push standards forward with practical innovation and disciplined delivery.",
     accent: true,
     icon: ShieldCheck,
   },
@@ -54,25 +54,16 @@ const WhyChooseUs = () => {
                 Why Choose Alpha Engineering
               </h2>
               <p className="text-base text-[#666666] sm:text-lg">
-                With over two decades of experience in Ghana&apos;s construction
-                industry, Alpha Engineering leads the field in comprehensive
-                plumbing engineering services. Our commitment to excellence,
-                innovative solutions, and unwavering dedication to client
-                satisfaction set us apart.
-              </p>
-              <p className="text-base text-[#666666] sm:text-lg">
-                We combine cutting-edge technology with time-tested expertise to
-                deliver work that exceeds expectations, ensuring every
-                installation meets the highest standards of quality, safety, and
-                efficiency.
+                Two decades in Ghana&apos;s construction industry give us the
+                experience to design, build, and maintain systems that simply
+                work—safely, on schedule, and to spec.
               </p>
             </div>
           </div>
           <div className="rounded-3xl border border-[#F0F0F0] bg-white/90 p-6 text-sm text-[#666666] shadow-sm shadow-black/5 lg:max-w-md">
             <p>
-              We pair strategic insight with hands-on craftsmanship, enabling
-              project teams to move confidently from planning to completion
-              while preserving timelines and budgets.
+              Strategic guidance plus hands-on delivery keep projects moving
+              smoothly from plan to handover.
             </p>
           </div>
         </div>

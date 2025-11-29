@@ -35,11 +35,11 @@ const MissionCta = () => {
   return (
     <section className="bg-[#F8F6F2] text-[#222222]">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-5 py-20 sm:px-8 md:flex-row md:items-start md:justify-between md:px-10 lg:px-16">
-        <div className="flex max-w-3xl flex-col gap-8">
+        <div className="flex max-w-2xl flex-col gap-8">
           <p className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[44px]">
-            Alpha Engineering Limited provides responsive, safe, and trusted solutions
-            with the highest-quality, most dependable, cost-effective engineering,
-            design, and construction management services.
+            Alpha Engineering delivers responsive, safe engineering and
+            construction management built on dependable, cost-effective
+            solutions.
           </p>
           <a
             href="#projects"
@@ -53,7 +53,8 @@ const MissionCta = () => {
         <div className="flex max-w-sm flex-col gap-6 text-sm text-[#666666] md:border-l md:border-[#E0D8CC] md:pl-8">
           {contactHighlights.map((item) => {
             const Icon = item.icon;
-            const isExternal = item.href.startsWith("mailto:") || item.href.startsWith("tel:");
+            const isExternal =
+              item.href.startsWith("mailto:") || item.href.startsWith("tel:");
             const Wrapper = isExternal ? "a" : Link;
 
             return (

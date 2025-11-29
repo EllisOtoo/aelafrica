@@ -48,7 +48,7 @@ export default function DesktopNavigation({
 
   return (
     <div className="hidden w-full flex-col md:flex">
-      <div className="flex items-center justify-between px-6 py-4 lg:px-10">
+      <div className="flex items-center justify-between px-6 py-4 lg:px-16">
         <Link
           href="/"
           className="flex items-center transition hover:opacity-90"

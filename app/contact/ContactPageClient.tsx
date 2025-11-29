@@ -11,7 +11,7 @@ const contactDetails = [
   {
     title: "Email Us",
     detail: "info@ael.africa",
-    description: "alphaengacc@gmail.com",
+    description: "info@ael.africa",
   },
   {
     title: "Our Office",

@@ -1,22 +1,33 @@
+import Link from "next/link";
 import { ArrowUpRight, FileText, Mail, Phone } from "lucide-react";
 
-const contactHighlights = [
+type ContactHighlight = {
+  title: string;
+  description: string;
+  icon: typeof FileText;
+  href: string;
+};
+
+const contactHighlights: ContactHighlight[] = [
   {
     title: "Request our profile",
     description:
       "Get a detailed view of our capabilities, certifications, and landmark projects.",
     icon: FileText,
+    href: "/contact",
   },
   {
     title: "Talk to our team",
     description:
       "We respond promptly to scope discussions, RFPs, and technical clarifications.",
     icon: Phone,
+    href: "/contact",
   },
   {
     title: "Email us anytime",
-    description: "projects@alphaengineering.com",
+    description: "info@ael.africa",
     icon: Mail,
+    href: "mailto:info@ael.africa",
   },
 ];
 
@@ -42,18 +53,26 @@ const MissionCta = () => {
         <div className="flex max-w-sm flex-col gap-6 text-sm text-[#666666] md:border-l md:border-[#E0D8CC] md:pl-8">
           {contactHighlights.map((item) => {
             const Icon = item.icon;
+            const isExternal = item.href.startsWith("mailto:") || item.href.startsWith("tel:");
+            const Wrapper = isExternal ? "a" : Link;
+
             return (
-              <div key={item.title} className="flex gap-4">
+              <Wrapper
+                key={item.title}
+                href={item.href}
+                className="group flex gap-4 rounded-2xl p-3 transition hover:bg-[#F0E8DD] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EAA315]"
+                {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+              >
                 <span className="mt-1 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-white text-[#7F4511] shadow-sm">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
-                <div>
-                  <p className="text-sm font-semibold text-[#222222]">
+                <div className="flex flex-col gap-1">
+                  <p className="text-sm font-semibold text-[#222222] group-hover:text-[#7F4511]">
                     {item.title}
                   </p>
                   <p className="text-sm text-[#666666]">{item.description}</p>
                 </div>
-              </div>
+              </Wrapper>
             );
           })}
         </div>

@@ -102,10 +102,10 @@ const Footer = () => {
                     Alternative Email:
                   </strong>{" "}
                   <a
-                    href="mailto:alphaengacc@gmail.com"
+                    href="mailto:info@ael.africa"
                     className="transition hover:text-[#F3C15B]"
                   >
-                    alphaengacc@gmail.com
+                    info@ael.africa
                   </a>
                 </span>
               </li>

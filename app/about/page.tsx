@@ -137,7 +137,7 @@ export default function AboutPage() {
                   Get in Touch
                 </p>
                 <p className="text-lg font-semibold">
-                  projects@alphaengineering.com
+                  info@ael.africa
                 </p>
               </div>
               <Link

@@ -11,19 +11,19 @@ const LINK_GROUPS = [
       { label: "Safety Policy", href: "/about#safety" },
     ],
   },
-  {
-    heading: "Services",
-    links: [
-      { label: "Plumbing & Fire Fighting", href: "/services/plumbing-fire" },
-      { label: "Civil Engineering", href: "/services/civil-engineering" },
-      { label: "Project Management", href: "/services/project-management" },
-    ],
-  },
+  // {
+  //   heading: "Services",
+  //   links: [
+  //     { label: "Plumbing & Fire Fighting", href: "/services/plumbing-fire" },
+  //     { label: "Civil Engineering", href: "/services/civil-engineering" },
+  //     { label: "Project Management", href: "/services/project-management" },
+  //   ],
+  // },
   {
     heading: "Resources",
     links: [
       { label: "Completed Projects", href: "/projects" },
-      { label: "News & Insights", href: "/news" },
+      // { label: "News & Insights", href: "/news" },
       { label: "Contact Us", href: "/contact" },
     ],
   },
@@ -133,7 +133,6 @@ const Footer = () => {
               </div>
             ))}
           </div>
-
         </div>
 
         <div className="flex justify-center">

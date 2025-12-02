@@ -7,7 +7,7 @@ import HeroActions from "./HeroActions";
  * Hero heading and body copy rendered separately so the parent can animate it.
  */
 const HeroContent = forwardRef<HTMLDivElement>((_, ref) => (
-  <div ref={ref} className="hero-content px-8 md:px-0 w-5xl mx-auto">
+  <div ref={ref} className="hero-content px-8 z-10 md:px-0 w-5xl mx-auto">
     <div className="flex max-w-3xl flex-col gap-8 text-white">
       <div className="flex flex-col gap-4">
         <span className="text-xs font-semibold uppercase tracking-[0.4em] text-[#EAA315] md:text-sm">

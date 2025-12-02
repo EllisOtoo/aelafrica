@@ -64,7 +64,7 @@ export default function MobileNavigation({
           </button>
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-[#EAA315] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_6px_14px_rgba(234,163,21,0.3)] transition hover:bg-[#f0b83e]"
+            className="inline-flex items-center rounded-full bg-[#EAA315] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white  transition hover:bg-[#f0b83e]"
           >
             Contact
           </Link>

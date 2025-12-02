@@ -81,10 +81,10 @@ export default function DesktopNavigation({
       </div>
 
       <div
-        className={`absolute left-0 right-0 top-full px-6 transition-all duration-500 ease-out lg:px-10 ${
+        className={`absolute left-0 right-0 top-full px-6 transition-[max-height] duration-500 ease-out lg:px-10 ${
           isOpen
-            ? "pointer-events-auto visible max-h-[420px] opacity-100"
-            : "pointer-events-none invisible max-h-0 opacity-0"
+            ? "pointer-events-auto visible max-h-[420px]"
+            : "pointer-events-none invisible max-h-0"
         }`}
       >
         <div className="relative overflow-hidden rounded-3xl border border-white/50 bg-white/70 px-10 py-9 shadow-[0_30px_80px_rgba(15,23,42,0.12)] backdrop-blur-2xl">

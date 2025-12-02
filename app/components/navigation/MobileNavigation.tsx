@@ -72,10 +72,10 @@ export default function MobileNavigation({
       </div>
 
       <div
-        className={`absolute left-0 right-0 top-full transition-all duration-500 ease-out ${
+        className={`absolute left-0 right-0 top-full transition-[max-height] duration-500 ease-out ${
           isOpen
-            ? "pointer-events-auto visible max-h-[32rem] opacity-100"
-            : "pointer-events-none invisible max-h-0 opacity-0"
+            ? "pointer-events-auto visible max-h-[32rem]"
+            : "pointer-events-none invisible max-h-0"
         }`}
       >
         <div className="px-5 pb-6 sm:px-6">

@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const contactDetails = [
   {
@@ -59,7 +60,13 @@ const urgencyOptions = [
   "Medium (1-2 weeks)",
   "Low (Flexible)",
 ];
-const propertyTypes = ["Residential", "Commercial", "Industrial", "Government", "Other"];
+const propertyTypes = [
+  "Residential",
+  "Commercial",
+  "Industrial",
+  "Government",
+  "Other",
+];
 
 type UnifiedFormValues = {
   inquiryPurpose: string;
@@ -78,9 +85,12 @@ type UnifiedFormValues = {
 };
 
 const ContactPageClient = () => {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [attachments, setAttachments] = useState<File[]>([]);
+  const notify = () => toast("Wow so easy!");
 
   const {
     register,
@@ -135,27 +145,37 @@ const ContactPageClient = () => {
         body: formData,
       });
 
-      const result = (await response.json().catch(() => ({}))) as { error?: string; message?: string };
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+      };
 
       if (!response.ok) {
-        throw new Error(result.error || result.message || "Unable to send message.");
+        throw new Error(
+          result.error || result.message || "Unable to send message."
+        );
       }
 
       setStatus("success");
-      setFeedback("Thank you! We received your request and will be in touch.");
+
+      notify();
       reset();
       setAttachments([]);
     } catch (error) {
       console.error(error);
       setStatus("error");
-      setFeedback("We could not send your message. Please try again or email info@ael.africa.");
+      setFeedback(
+        "We could not send your message. Please try again or email info@ael.africa."
+      );
     }
   };
 
   return (
     <div className="bg-[#F5EFE8] text-[#2C1404]">
       <section className="mx-auto w-full max-w-5xl px-5 py-16 text-center sm:px-8 md:px-10 lg:px-0">
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Get In Touch</h1>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          Get In Touch
+        </h1>
         <p className="mt-4 text-base text-[#5c3410] sm:text-lg">
           Tell us about your project, and we will get back to you soon.
         </p>
@@ -183,18 +203,27 @@ const ContactPageClient = () => {
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#A5621C]">
                 How can we help?
               </p>
-              <h2 className="text-2xl font-semibold text-[#2C1404]">Tell us about your needs</h2>
+              <h2 className="text-2xl font-semibold text-[#2C1404]">
+                Tell us about your needs
+              </h2>
               <p className="text-sm text-[#6c5034]">
-                One form for general inquiries and quotes—share the details and we will route it to
-                the right team.
+                One form for general inquiries and quotes—share the details and
+                we will route it to the right team.
               </p>
             </div>
           </div>
 
-          <form className="mt-8 grid gap-8" onSubmit={handleSubmit(onSubmitForm)} noValidate>
+          <form
+            className="mt-8 grid gap-8"
+            onSubmit={handleSubmit(onSubmitForm)}
+            noValidate
+          >
             <div className="grid gap-8 md:grid-cols-2">
               <div className="flex flex-col gap-2">
-                <label htmlFor="fullName" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="fullName"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Full Name*
                 </label>
                 <input
@@ -202,13 +231,22 @@ const ContactPageClient = () => {
                   type="text"
                   placeholder="Enter your full name..."
                   className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] placeholder:text-[#9B8A7C] focus:border-[#7F4511] focus:outline-none"
-                  {...register("fullName", { required: "Full name is required." })}
+                  {...register("fullName", {
+                    required: "Full name is required.",
+                  })}
                 />
-                {errors.fullName && <p className="text-xs text-[#B0412C]">{errors.fullName.message}</p>}
+                {errors.fullName && (
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.fullName.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Email Address*
                 </label>
                 <input
@@ -218,11 +256,18 @@ const ContactPageClient = () => {
                   className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] placeholder:text-[#9B8A7C] focus:border-[#7F4511] focus:outline-none"
                   {...register("email", { required: "Email is required." })}
                 />
-                {errors.email && <p className="text-xs text-[#B0412C]">{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="phone" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="phone"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Phone Number*
                 </label>
                 <input
@@ -234,11 +279,18 @@ const ContactPageClient = () => {
                     required: "Phone number helps us call you back quickly.",
                   })}
                 />
-                {errors.phone && <p className="text-xs text-[#B0412C]">{errors.phone.message}</p>}
+                {errors.phone && (
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="company" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="company"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Company / Organization
                 </label>
                 <input
@@ -253,13 +305,18 @@ const ContactPageClient = () => {
 
             <div className="grid gap-8 md:grid-cols-2">
               <div className="flex flex-col gap-2">
-                <label htmlFor="inquiryPurpose" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="inquiryPurpose"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Inquiry Purpose*
                 </label>
                 <select
                   id="inquiryPurpose"
                   className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] focus:border-[#7F4511] focus:outline-none"
-                  {...register("inquiryPurpose", { required: "Please select a purpose." })}
+                  {...register("inquiryPurpose", {
+                    required: "Please select a purpose.",
+                  })}
                 >
                   <option value="">Choose one option...</option>
                   {contactInquiryOptions.map((option) => (
@@ -269,18 +326,25 @@ const ContactPageClient = () => {
                   ))}
                 </select>
                 {errors.inquiryPurpose && (
-                  <p className="text-xs text-[#B0412C]">{errors.inquiryPurpose.message}</p>
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.inquiryPurpose.message}
+                  </p>
                 )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="serviceInterest" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="serviceInterest"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Service of Interest*
                 </label>
                 <select
                   id="serviceInterest"
                   className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] focus:border-[#7F4511] focus:outline-none"
-                  {...register("serviceInterest", { required: "Select a service." })}
+                  {...register("serviceInterest", {
+                    required: "Select a service.",
+                  })}
                 >
                   <option value="">e.g., Civil Engineering...</option>
                   {servicesOffered.map((service) => (
@@ -290,14 +354,19 @@ const ContactPageClient = () => {
                   ))}
                 </select>
                 {errors.serviceInterest && (
-                  <p className="text-xs text-[#B0412C]">{errors.serviceInterest.message}</p>
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.serviceInterest.message}
+                  </p>
                 )}
               </div>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2">
               <div className="flex flex-col gap-2">
-                <label htmlFor="serviceRequired" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="serviceRequired"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Specific Service Needed*
                 </label>
                 <select
@@ -315,12 +384,17 @@ const ContactPageClient = () => {
                   ))}
                 </select>
                 {errors.serviceRequired && (
-                  <p className="text-xs text-[#B0412C]">{errors.serviceRequired.message}</p>
+                  <p className="text-xs text-[#B0412C]">
+                    {errors.serviceRequired.message}
+                  </p>
                 )}
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="propertyType" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="propertyType"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Property Type
                 </label>
                 <select
@@ -340,7 +414,10 @@ const ContactPageClient = () => {
 
             <div className="grid gap-8 md:grid-cols-3">
               <div className="flex flex-col gap-2">
-                <label htmlFor="timeline" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="timeline"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Timeline
                 </label>
                 <select
@@ -358,7 +435,10 @@ const ContactPageClient = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="budget" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="budget"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Budget Range
                 </label>
                 <select
@@ -376,7 +456,10 @@ const ContactPageClient = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="urgency" className="text-sm font-semibold text-[#6B4A31]">
+                <label
+                  htmlFor="urgency"
+                  className="text-sm font-semibold text-[#6B4A31]"
+                >
                   Urgency Level
                 </label>
                 <select
@@ -395,7 +478,10 @@ const ContactPageClient = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="projectDescription" className="text-sm font-semibold text-[#6B4A31]">
+              <label
+                htmlFor="projectDescription"
+                className="text-sm font-semibold text-[#6B4A31]"
+              >
                 Project Details*
               </label>
               <textarea
@@ -404,16 +490,22 @@ const ContactPageClient = () => {
                 placeholder="Please describe your project or request in detail..."
                 className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] placeholder:text-[#9B8A7C] focus:border-[#7F4511] focus:outline-none"
                 {...register("projectDescription", {
-                  required: "Tell us about the project so we can quote accurately.",
+                  required:
+                    "Tell us about the project so we can quote accurately.",
                 })}
               />
               {errors.projectDescription && (
-                <p className="text-xs text-[#B0412C]">{errors.projectDescription.message}</p>
+                <p className="text-xs text-[#B0412C]">
+                  {errors.projectDescription.message}
+                </p>
               )}
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-semibold text-[#6B4A31]">
+              <label
+                htmlFor="message"
+                className="text-sm font-semibold text-[#6B4A31]"
+              >
                 Additional Notes
               </label>
               <textarea
@@ -421,25 +513,39 @@ const ContactPageClient = () => {
                 rows={4}
                 placeholder="Share any other context, files, or timelines..."
                 className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] placeholder:text-[#9B8A7C] focus:border-[#7F4511] focus:outline-none"
-                {...register("message", { required: "Please add a brief note." })}
+                {...register("message", {
+                  required: "Please add a brief note.",
+                })}
               />
-              {errors.message && <p className="text-xs text-[#B0412C]">{errors.message.message}</p>}
+              {errors.message && (
+                <p className="text-xs text-[#B0412C]">
+                  {errors.message.message}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-[#6B4A31]">Attach drawings or images</label>
+              <label className="text-sm font-semibold text-[#6B4A31]">
+                Attach drawings or images
+              </label>
               <div
                 {...getRootProps({
                   className: `flex flex-col gap-2 rounded-2xl border-2 border-dashed ${
-                    isDragActive ? "border-[#7F4511] bg-[#FDF9F4]" : "border-[#E5D5C2] bg-[#FBF7F3]"
+                    isDragActive
+                      ? "border-[#7F4511] bg-[#FDF9F4]"
+                      : "border-[#E5D5C2] bg-[#FBF7F3]"
                   } px-4 py-5 text-sm text-[#2C1404] transition`,
                 })}
               >
                 <input {...getInputProps()} />
                 <p className="font-semibold">
-                  {isDragActive ? "Drop the files here..." : "Drag & drop images here, or click to browse"}
+                  {isDragActive
+                    ? "Drop the files here..."
+                    : "Drag & drop images here, or click to browse"}
                 </p>
-                <p className="text-xs text-[#6c5034]">JPG, PNG, GIF up to 10MB each.</p>
+                <p className="text-xs text-[#6c5034]">
+                  JPG, PNG, GIF up to 10MB each.
+                </p>
               </div>
 
               {attachments.length > 0 && (

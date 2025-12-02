@@ -73,7 +73,7 @@ export default function DesktopNavigation({
           </button>
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-[#EAA315] px-5 py-2 text-sm font-semibold uppercase tracking-[0.16em] text-white shadow-[0_8px_18px_rgba(234,163,21,0.35)] transition hover:bg-[#f0b83e]"
+            className="inline-flex items-center rounded-full bg-[#EAA315] px-5 py-2 text-sm font-semibold uppercase tracking-[0.16em] text-white  transition hover:bg-[#f0b83e]"
           >
             Contact Us
           </Link>

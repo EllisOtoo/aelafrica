@@ -1,5 +1,5 @@
-const desktopBackground = "url('/images/banner.png')";
-const mobileBackground = "url('/images/banner.png')";
+const desktopBackground = "url('/images/banner_new.jpg')";
+const mobileBackground = "url('/images/banner_new.jpg')";
 
 /**
  * Renders responsive background imagery with gradient overlays so the hero copy stays legible.

@@ -90,7 +90,10 @@ const ContactPageClient = () => {
   >("idle");
   const [feedback, setFeedback] = useState<string | null>(null);
   const [attachments, setAttachments] = useState<File[]>([]);
-  const notify = () => toast("Wow so easy!");
+  const notify = () =>
+    toast(
+      "Thank you for reaching out. We have your details and will respond shortly."
+    );
 
   const {
     register,

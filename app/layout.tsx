@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./components/navigation/Navigation";
 import Footer from "./components/footer/Footer";
-import { ToastContainer, toast } from "react-toastify";
+import ToastProvider from "./components/ToastProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
-        <ToastContainer />
+        <ToastProvider />
       </body>
     </html>
   );

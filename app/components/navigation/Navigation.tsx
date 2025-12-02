@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 
@@ -20,6 +20,7 @@ const secondaryLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isElevated, setIsElevated] = useState(false);
+  const navRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,10 +38,25 @@ export default function Navigation() {
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!isOpen) return;
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [isOpen]);
+
   return (
     <header className="pointer-events-none relative z-30 w-full flex justify-center px-4  sm:px-6 lg:px-8">
       <div className="w-full max-w-6xl">
         <div
+          ref={navRef}
           className={`pointer-events-auto rounded-2xl relative transition-all duration-500 ease-out  ${
             isElevated ? "" : ""
           }`}

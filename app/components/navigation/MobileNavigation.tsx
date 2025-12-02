@@ -101,10 +101,10 @@ export default function MobileNavigation({
               </div>
             </nav>
 
-            <div
+            {/* <div
               aria-hidden="true"
               className="pointer-events-none absolute -right-12 top-10 h-32 w-32 rounded-full bg-[#EAA315]/25 blur-3xl"
-            />
+            /> */}
           </div>
         </div>
       </div>

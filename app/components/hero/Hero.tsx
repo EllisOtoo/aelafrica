@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import HeroContent from "./HeroContent";
 
 /**
  * Immersive hero with animated blueprint lines and flush-right architecture layout.
@@ -279,21 +280,11 @@ const Hero = () => {
         aria-hidden
       />
 
-      <div ref={contentRef} className="hero-content">
-        <h1>
-          Architecture
-          <br />
-          <span>In Motion.</span>
-        </h1>
-        <p>
-          Where precision engineering meets tranquil design. Building the
-          future, one line at a time.
-        </p>
-      </div>
+      <HeroContent ref={contentRef} />
 
       <style jsx>{`
         .hero-shell {
-          --bg-color: #3e1e0b;
+          --bg-color: #fff;
           --bg-grad-start: #5c3012;
           --bg-grad-end: #261005;
           --line-primary: #bd7b52;

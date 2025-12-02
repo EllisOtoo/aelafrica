@@ -1,5 +1,7 @@
- "use client";
+"use client";
 
+import { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 
 const contactDetails = [
@@ -76,9 +78,14 @@ type UnifiedFormValues = {
 };
 
 const ContactPageClient = () => {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [attachments, setAttachments] = useState<File[]>([]);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UnifiedFormValues>({
     defaultValues: {
@@ -98,8 +105,51 @@ const ContactPageClient = () => {
     },
   });
 
-  const onSubmitForm = (values: UnifiedFormValues) => {
-    console.log("Unified contact submission", values);
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setAttachments((prev) => [...prev, ...acceptedFiles]);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "image/*": [] },
+    maxSize: 10 * 1024 * 1024,
+  });
+
+  const removeAttachment = (index: number) => {
+    setAttachments((prev) => prev.filter((_, idx) => idx !== index));
+  };
+
+  const onSubmitForm = async (values: UnifiedFormValues) => {
+    try {
+      setStatus("sending");
+      setFeedback(null);
+
+      const formData = new FormData();
+      Object.entries(values).forEach(([key, value]) => {
+        if (value) formData.append(key, value);
+      });
+      attachments.forEach((file) => formData.append("attachments", file));
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = (await response.json().catch(() => ({}))) as { error?: string; message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error || result.message || "Unable to send message.");
+      }
+
+      setStatus("success");
+      setFeedback("Thank you! We received your request and will be in touch.");
+      reset();
+      setAttachments([]);
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setFeedback("We could not send your message. Please try again or email info@ael.africa.");
+    }
   };
 
   return (
@@ -371,18 +421,67 @@ const ContactPageClient = () => {
                 rows={4}
                 placeholder="Share any other context, files, or timelines..."
                 className="rounded-2xl border border-[#E5D5C2] bg-[#FBF7F3] px-4 py-3 text-sm text-[#2C1404] placeholder:text-[#9B8A7C] focus:border-[#7F4511] focus:outline-none"
-                {...register("message")}
+                {...register("message", { required: "Please add a brief note." })}
               />
+              {errors.message && <p className="text-xs text-[#B0412C]">{errors.message.message}</p>}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold text-[#6B4A31]">Attach drawings or images</label>
+              <div
+                {...getRootProps({
+                  className: `flex flex-col gap-2 rounded-2xl border-2 border-dashed ${
+                    isDragActive ? "border-[#7F4511] bg-[#FDF9F4]" : "border-[#E5D5C2] bg-[#FBF7F3]"
+                  } px-4 py-5 text-sm text-[#2C1404] transition`,
+                })}
+              >
+                <input {...getInputProps()} />
+                <p className="font-semibold">
+                  {isDragActive ? "Drop the files here..." : "Drag & drop images here, or click to browse"}
+                </p>
+                <p className="text-xs text-[#6c5034]">JPG, PNG, GIF up to 10MB each.</p>
+              </div>
+
+              {attachments.length > 0 && (
+                <ul className="space-y-2 text-sm text-[#6c5034]">
+                  {attachments.map((file, index) => (
+                    <li
+                      key={`${file.name}-${file.lastModified}-${index}`}
+                      className="flex items-center justify-between rounded-xl bg-[#FBF7F3] px-3 py-2"
+                    >
+                      <span className="truncate pr-3">{file.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeAttachment(index)}
+                        className="text-xs font-semibold text-[#B0412C] hover:underline"
+                      >
+                        Remove
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-full bg-[#7F4511] px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#9B5B1F]"
+                disabled={status === "sending"}
+                className="inline-flex items-center justify-center rounded-full bg-[#7F4511] px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#9B5B1F] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Submit Request
+                {status === "sending" ? "Sending..." : "Submit Request"}
               </button>
             </div>
+
+            {feedback && (
+              <p
+                className={`text-center text-sm ${
+                  status === "success" ? "text-green-700" : "text-[#B0412C]"
+                }`}
+              >
+                {feedback}
+              </p>
+            )}
           </form>
         </div>
       </section>

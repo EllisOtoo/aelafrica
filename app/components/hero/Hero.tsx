@@ -1,27 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import HeroContent from "./HeroContent";
 
 /**
- * Full-screen hero with animated blueprint lines anchored to the right while preserving the existing copy.
+ * Immersive hero with animated blueprint lines and flush-right architecture layout.
  */
 const Hero = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const svg = svgRef.current;
-    if (!svg) return;
+    const content = contentRef.current;
+    if (!svg || !content) return undefined;
 
-    type Timeout = ReturnType<typeof setTimeout>;
-    const timers: Timeout[] = [];
+    while (svg.firstChild) {
+      svg.removeChild(svg.firstChild);
+    }
 
-    const schedule = (fn: () => void, delay: number) => {
-      const id = window.setTimeout(fn, delay);
-      timers.push(id);
-    };
-
-    svg.innerHTML = "";
+    const timeouts: number[] = [];
 
     const CANVAS_WIDTH = 1920;
     const ORIGINAL_EDGE = 1450;
@@ -70,14 +67,17 @@ const Hero = () => {
       const d = `M ${x1.toFixed(1)} ${y1.toFixed(1)} L ${x2.toFixed(
         1
       )} ${y2.toFixed(1)}`;
+
       path.setAttribute("d", d);
       path.setAttribute("class", `${type} ${direction}`);
       svg.appendChild(path);
-      void path.getBoundingClientRect();
-      schedule(() => {
+
+      void path.getBoundingClientRect(); // force layout so transitions run
+      const timeoutId = window.setTimeout(() => {
         path.classList.remove(direction);
         path.style.opacity = type === "line-structure" ? "0.9" : "0.7";
       }, delay);
+      timeouts.push(timeoutId);
     };
 
     const allVerticals = [...colX, sideEdgeX];
@@ -113,18 +113,18 @@ const Hero = () => {
     });
 
     for (let f = 0; f < numFloors; f += 1) {
-      const cornerYTop = floorHeightsCorner[f];
-      const cornerYBot = floorHeightsCorner[f] + floorH * 0.85;
+      const cornerY_Top = floorHeightsCorner[f];
+      const cornerY_Bot = floorHeightsCorner[f] + floorH * 0.85;
       const floorDelay = 600 + f * 120;
 
       for (let c = 0; c < colX.length - 1; c += 1) {
         const colLeft = colX[c] + 15;
         const colRight = colX[c + 1];
 
-        const yTL = projectY(colLeft, CORNER_X, cornerYTop, VP_L);
-        const yTR = projectY(colRight, CORNER_X, cornerYTop, VP_L);
-        const yBL = projectY(colLeft, CORNER_X, cornerYBot, VP_L);
-        const yBR = projectY(colRight, CORNER_X, cornerYBot, VP_L);
+        const yTL = projectY(colLeft, CORNER_X, cornerY_Top, VP_L);
+        const yTR = projectY(colRight, CORNER_X, cornerY_Top, VP_L);
+        const yBL = projectY(colLeft, CORNER_X, cornerY_Bot, VP_L);
+        const yBR = projectY(colRight, CORNER_X, cornerY_Bot, VP_L);
 
         const cellDelay = floorDelay + c * 50;
 
@@ -148,8 +148,8 @@ const Hero = () => {
         );
 
         const inX = colLeft + 12;
-        const inYTop = yTL + 8;
-        const inYBot = yBL - 8;
+        const inY_Top = yTL + 8;
+        const inY_Bot = yBL - 8;
 
         createFlyInLine(
           colLeft,
@@ -162,9 +162,9 @@ const Hero = () => {
         );
         createFlyInLine(
           inX,
-          inYTop,
+          inY_Top,
           inX,
-          inYBot,
+          inY_Bot,
           "line-detail",
           "from-bottom",
           cellDelay + 250
@@ -173,7 +173,7 @@ const Hero = () => {
           colLeft,
           yTL,
           inX,
-          inYTop,
+          inY_Top,
           "line-detail",
           "from-left",
           cellDelay + 300
@@ -182,32 +182,32 @@ const Hero = () => {
           colLeft,
           yBL,
           inX,
-          inYBot,
+          inY_Bot,
           "line-detail",
           "from-left",
           cellDelay + 300
         );
       }
 
-      const sTopY1 = projectY(CORNER_X, CORNER_X, cornerYTop, VP_R);
-      const sTopY2 = projectY(sideEdgeX, CORNER_X, cornerYTop, VP_R);
-      const sBotY1 = projectY(CORNER_X, CORNER_X, cornerYBot, VP_R);
-      const sBotY2 = projectY(sideEdgeX, CORNER_X, cornerYBot, VP_R);
+      const sTopY_1 = projectY(CORNER_X, CORNER_X, cornerY_Top, VP_R);
+      const sTopY_2 = projectY(sideEdgeX, CORNER_X, cornerY_Top, VP_R);
+      const sBotY_1 = projectY(CORNER_X, CORNER_X, cornerY_Bot, VP_R);
+      const sBotY_2 = projectY(sideEdgeX, CORNER_X, cornerY_Bot, VP_R);
 
       createFlyInLine(
         CORNER_X,
-        sTopY1,
+        sTopY_1,
         sideEdgeX,
-        sTopY2,
+        sTopY_2,
         "line-detail",
         "from-right",
         floorDelay + 200
       );
       createFlyInLine(
         CORNER_X,
-        sBotY1,
+        sBotY_1,
         sideEdgeX,
-        sBotY2,
+        sBotY_2,
         "line-detail",
         "from-right",
         floorDelay + 250
@@ -215,14 +215,14 @@ const Hero = () => {
     }
 
     const roofY = floorHeightsCorner[0];
-    const roofYUpper = roofY - 25;
+    const roofY_Upper = roofY - 25;
     const roofDelay = 2200;
 
-    const LLeftX = colX[0];
-    const L_y_hi_1 = projectY(LLeftX, CORNER_X, roofYUpper, VP_L);
-    const L_y_hi_2 = roofYUpper;
+    const L_leftX = colX[0];
+    const L_y_hi_1 = projectY(L_leftX, CORNER_X, roofY_Upper, VP_L);
+    const L_y_hi_2 = roofY_Upper;
     createFlyInLine(
-      LLeftX,
+      L_leftX,
       L_y_hi_1,
       CORNER_X,
       L_y_hi_2,
@@ -231,15 +231,15 @@ const Hero = () => {
       roofDelay
     );
 
-    const RRightX = sideEdgeX;
-    const R_y_hi_1 = roofYUpper;
-    const R_y_hi_2 = projectY(RRightX, CORNER_X, roofYUpper, VP_R);
-    const R_y_low_2 = projectY(RRightX, CORNER_X, roofY, VP_R);
+    const R_rightX = sideEdgeX;
+    const R_y_hi_1 = roofY_Upper;
+    const R_y_hi_2 = projectY(R_rightX, CORNER_X, roofY_Upper, VP_R);
+    const R_y_low_2 = projectY(R_rightX, CORNER_X, roofY, VP_R);
 
     createFlyInLine(
       CORNER_X,
       R_y_hi_1,
-      RRightX,
+      R_rightX,
       R_y_hi_2,
       "line-structure",
       "from-right",
@@ -255,35 +255,68 @@ const Hero = () => {
       roofDelay + 200
     );
 
+    const activation = window.setTimeout(() => {
+      content.classList.add("active");
+    }, 800);
+    timeouts.push(activation);
+
     return () => {
-      timers.forEach(clearTimeout);
-      svg.innerHTML = "";
+      timeouts.forEach((id) => window.clearTimeout(id));
+      while (svg.firstChild) {
+        svg.removeChild(svg.firstChild);
+      }
+      content.classList.remove("active");
     };
   }, []);
 
   return (
-    <section className="hero-shell relative isolate flex min-h-screen w-full items-center overflow-hidden bg-[#3e1e0b]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_50%,#5c3012,#261005)]" />
+    <section className="hero-shell">
       <svg
         ref={svgRef}
-        className="blueprint-canvas"
+        id="blueprint-canvas"
         viewBox="0 0 1920 1080"
         preserveAspectRatio="xMaxYMid slice"
         aria-hidden
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/30 via-black/15 to-transparent" />
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl px-6 py-16 sm:px-8 md:px-10 lg:px-16">
-        <div className="relative z-10 mt-14 max-w-3xl md:mt-0 md:max-w-4xl">
-          <HeroContent />
-        </div>
+
+      <div ref={contentRef} className="hero-content">
+        <h1>
+          Architecture
+          <br />
+          <span>In Motion.</span>
+        </h1>
+        <p>
+          Where precision engineering meets tranquil design. Building the
+          future, one line at a time.
+        </p>
       </div>
-      <style jsx global>{`
-        .blueprint-canvas {
+
+      <style jsx>{`
+        .hero-shell {
+          --bg-color: #3e1e0b;
+          --bg-grad-start: #5c3012;
+          --bg-grad-end: #261005;
+          --line-primary: #bd7b52;
+          --line-secondary: #8a563a;
+          position: relative;
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          background-color: var(--bg-color);
+          background: radial-gradient(
+            circle at 40% 50%,
+            var(--bg-grad-start),
+            var(--bg-grad-end)
+          );
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        :global(#blueprint-canvas) {
           position: absolute;
           top: 0;
           right: 0;
-          bottom: 0;
-          left: 0;
           width: 100%;
           height: 100%;
           z-index: 1;
@@ -291,7 +324,7 @@ const Hero = () => {
           pointer-events: none;
         }
 
-        .blueprint-canvas path {
+        :global(#blueprint-canvas path) {
           fill: none;
           stroke-linecap: square;
           vector-effect: non-scaling-stroke;
@@ -300,43 +333,91 @@ const Hero = () => {
           will-change: transform, opacity;
         }
 
-        .line-structure {
-          stroke: #bd7b52;
+        :global(.line-structure) {
+          stroke: var(--line-primary);
           stroke-width: 1.5px;
           opacity: 0.9;
         }
 
-        .line-detail {
-          stroke: #8a563a;
+        :global(.line-detail) {
+          stroke: var(--line-secondary);
           stroke-width: 1px;
           opacity: 0.7;
         }
 
-        .from-bottom {
+        :global(.from-bottom) {
           transform: translateY(1500px);
           opacity: 0;
         }
 
-        .from-left {
+        :global(.from-left) {
           transform: translateX(-3000px);
           opacity: 0;
         }
 
-        .from-right {
+        :global(.from-right) {
           transform: translateX(1000px);
           opacity: 0;
         }
 
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          margin-left: 8vw;
+          max-width: 600px;
+          pointer-events: none;
+        }
+
+        .hero-content h1 {
+          font-size: 5rem;
+          line-height: 1.1;
+          font-weight: 300;
+          color: #ffffff;
+          margin: 0 0 25px 0;
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 1.5s ease,
+            transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-content h1 span {
+          color: var(--line-primary);
+          font-weight: 600;
+        }
+
+        .hero-content p {
+          font-size: 1.2rem;
+          color: rgba(255, 255, 255, 0.7);
+          border-left: 2px solid var(--line-primary);
+          padding-left: 24px;
+          margin: 0;
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 1.5s ease 0.2s,
+            transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+
+        .hero-content.active h1,
+        .hero-content.active p {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
         @media (max-width: 768px) {
-          .blueprint-canvas {
+          :global(#blueprint-canvas) {
             height: 80%;
             top: 10%;
-            bottom: auto;
             right: -10%;
           }
 
-          .hero-shell {
-            align-items: flex-start;
+          .hero-content {
+            margin-left: 5vw !important;
+            margin-top: -20vh;
+            max-width: 80% !important;
+          }
+
+          .hero-content h1 {
+            font-size: 3.5rem !important;
           }
         }
       `}</style>

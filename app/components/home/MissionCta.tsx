@@ -42,7 +42,7 @@ const MissionCta = () => {
             solutions.
           </p>
           <a
-            href="#projects"
+            href="/projects"
             className="inline-flex w-fit items-center justify-center gap-3 rounded-full bg-[#7F4511] px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-colors duration-150 hover:bg-[#93551A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EAA315]"
           >
             View Our Work

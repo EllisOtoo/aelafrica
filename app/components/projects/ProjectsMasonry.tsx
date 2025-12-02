@@ -140,7 +140,7 @@ const ProjectsMasonry = () => {
                 {card.isCta && (
                   <div className="mt-8">
                     <a
-                      href="/projects"
+                      href="/projects/portfolio"
                       className="inline-flex items-center gap-3 rounded-full bg-[#EAA315] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#4A2507] transition hover:bg-[#f3c452]"
                     >
                       Explore Portfolio

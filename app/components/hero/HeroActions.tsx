@@ -14,7 +14,7 @@ const HeroActions = () => {
       >
         Contact Us
       </Link>
-      <Link
+      {/* <Link
         href="#about"
         className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-sm transition duration-150 hover:border-white/40 hover:bg-white/10"
       >
@@ -32,7 +32,7 @@ const HeroActions = () => {
             />
           </svg>
         </span>
-      </Link>
+      </Link> */}
     </div>
   );
 };

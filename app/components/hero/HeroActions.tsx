@@ -9,7 +9,7 @@ const HeroActions = () => {
   return (
     <div className="flex flex-wrap items-center gap-4 sm:gap-6">
       <Link
-        href="#contact"
+        href="/contact"
         className="inline-flex items-center justify-center rounded-full bg-[#EAA315] px-8 py-4 text-sm font-bold uppercase tracking-[0.28em] text-[#7F4511] shadow-[0_16px_40px_rgba(0,0,0,0.25)] transition duration-150 hover:bg-[#f2b436]"
       >
         Contact Us

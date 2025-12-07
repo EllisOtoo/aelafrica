@@ -4,30 +4,84 @@ import SectionHero from "../components/hero/SectionHero";
 const serviceCards = [
   {
     id: "01",
-    title: "Plumbing & Fire Fighting",
-    subtitle: "High-standard mechanical services for buildings.",
-    tagline: "Our Commitment to Quality",
+    title: "Plumbing Systems",
+    subtitle: "Internal and external water, drainage, and pumping.",
+    tagline: "Built for reliability",
     description:
-      "Ensuring the safety and functionality of every building with certified, industry-standard plumbing, pumping, and fire suppression installations.",
-    placeholder: "#D9D4CF",
+      "Designing and installing pressurized water supply, sanitary stacks, pump rooms, and storage to keep facilities running safely around the clock.",
+    placeholder: "#F6E3C3",
   },
   {
     id: "02",
-    title: "Civil & Structural Engineering",
-    subtitle: "Building the foundations of modern infrastructure.",
-    tagline: "Built to Last",
+    title: "Civil Engineering",
+    subtitle: "Core infrastructure and structural works.",
+    tagline: "Engineered foundations",
     description:
-      "From design to construction, we provide dependable solutions for public and private sector developments, renovations, and expansions.",
-    placeholder: "#CFC8C0",
+      "Delivering civil works from earthworks to reinforced concrete structures, drainage, and utilities that meet public and private sector standards.",
+    placeholder: "#E8DAC9",
   },
   {
     id: "03",
-    title: "Project Management",
-    subtitle: "Coordinated delivery with trusted partners.",
-    tagline: "A Focus on Dependability",
+    title: "Building Construction",
+    subtitle: "Shell, finishes, and coordinated fit-outs.",
+    tagline: "Quality from ground up",
     description:
-      "We deliver cost-effective and dependable project management services that keep budgets, timelines, and quality controls on track.",
-    placeholder: "#E2DBD1",
+      "Managing building construction and renovations with disciplined supervision to ensure timelines, safety, and workmanship stay on track.",
+    placeholder: "#E4D2C2",
+  },
+  {
+    id: "04",
+    title: "Electrical Installations",
+    subtitle: "Power, lighting, and controls for modern facilities.",
+    tagline: "Safe power distribution",
+    description:
+      "Providing compliant electrical infrastructure, switchgear, and lighting that integrate with mechanical systems for dependable operations.",
+    placeholder: "#F2E7D7",
+  },
+  {
+    id: "05",
+    title: "HVAC (Heating/Cooling)",
+    subtitle: "Comfort cooling and ventilation for occupied spaces.",
+    tagline: "Efficient environments",
+    description:
+      "Supplying and coordinating HVAC solutions that balance comfort, airflow, and energy use across offices, hostels, and mixed-use buildings.",
+    placeholder: "#E9DFD3",
+  },
+  {
+    id: "06",
+    title: "Fire Protection Systems",
+    subtitle: "Firefighting networks and life-safety support.",
+    tagline: "Protection first",
+    description:
+      "Installing firefighting piping, hydrants, hose reels, and pump assemblies so buildings are prepared and compliant with safety standards.",
+    placeholder: "#F7E0B8",
+  },
+  {
+    id: "07",
+    title: "Solar Power Systems",
+    subtitle: "Renewable and backup generation.",
+    tagline: "Resilient energy",
+    description:
+      "Designing solar-assisted solutions that stabilize power supply, reduce operating costs, and integrate with existing electrical systems.",
+    placeholder: "#E5D5C2",
+  },
+  {
+    id: "08",
+    title: "Maintenance Services",
+    subtitle: "Preventive and corrective support for MEP assets.",
+    tagline: "Uptime you can trust",
+    description:
+      "Providing scheduled maintenance and rapid response for plumbing, fire, and mechanical systems to extend asset life and reduce downtime.",
+    placeholder: "#EFE4D8",
+  },
+  {
+    id: "09",
+    title: "MEP Designs",
+    subtitle: "Front-end design and coordination drawings.",
+    tagline: "Clear constructability",
+    description:
+      "Producing coordinated MEP designs and shop drawings that de-risk installations, sequencing, and approvals for complex builds.",
+    placeholder: "#DDCFC2",
   },
 ];
 
@@ -36,8 +90,8 @@ const Services = () => {
     <div className="bg-[#F5EFE8] text-[#1F140C]">
       <SectionHero
         label="Our Capabilities"
-        caption="Our Core Engineering Services"
-        subCaption="High-standard mechanical and civil engineering services tailored for Ghana's most demanding public and private infrastructure projects."
+        caption="Full-Scope MEP & Civil Services"
+        subCaption="Integrated delivery across building systems—plumbing, fire protection, electrical, HVAC, solar, and maintenance—built for Ghana's most demanding projects."
         tone="light"
       />
 
@@ -48,7 +102,7 @@ const Services = () => {
               Our Capabilities
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#221710] sm:text-4xl">
-              Tailored Solutions for Every Project
+              Integrated Delivery Across Building Systems
             </h2>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">

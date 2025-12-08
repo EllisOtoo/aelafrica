@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const TopContactBar = () => {
   return (
-    <div className="w-full  bg-[#7F4511] text-white py-2 px-4 sm:px-6 lg:px-8">
+    <div className="w-full  bg-[#7F4511]  text-white py-2 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 sm:flex-row text-xs font-medium tracking-wide uppercase">
         <div className="flex items-center gap-6">
           <Link

@@ -7,7 +7,7 @@ import StatsBar from "./components/stats/StatsBar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen -mt-28 md:-mt-32">
+    <main className="min-h-screen">
       <Hero />
       <StatsBar />
       <MissionCta />

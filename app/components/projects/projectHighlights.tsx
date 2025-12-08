@@ -136,7 +136,7 @@ export default function HorizontalProjectAccordion({
                         </div>
 
                         <div className="col-span-12 lg:col-span-5 flex items-start lg:items-end justify-start lg:justify-end">
-                          <a
+                          {/* <a
                             href="#"
                             className="inline-flex items-center gap-2 rounded-full bg-neutral-900 text-white px-5 py-3 text-sm font-semibold shadow-sm hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/40"
                           >
@@ -157,7 +157,7 @@ export default function HorizontalProjectAccordion({
                                 strokeLinejoin="round"
                               />
                             </svg>
-                          </a>
+                          </a> */}
                         </div>
                       </div>
 

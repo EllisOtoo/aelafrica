@@ -7,33 +7,56 @@ const projects = [
   {
     id: "p1",
     number: "01",
-    title: "Paiton Solar Farm",
-    client: "PT Perusahaan Listrik Negara (Persero)",
-    location: "East Java, Indonesia",
+    title: "World Trade Centre Project",
+    client: "World Trade Centre Accra",
+    location: "Accra, Ghana",
     excerpt:
-      "A utility-scale installation with floating arrays and high-wind tracking systems.",
+      "Comprehensive MEP delivery for Accra's landmark twin-tower complex, including plumbing systems, fire protection networks, and coordinated mechanical works.",
+    image: "/images/projects/world_trade_center.png",
     accent: "#EAB308",
   },
   {
     id: "p2",
     number: "02",
-    title: "Suramadu Solar Farm",
-    client: "PT Perusahaan Listrik Negara (Persero)",
-    location: "Surabaya, Indonesia",
+    title: "American Resource Project",
+    client: "American Resources Ltd",
+    location: "Accra, Ghana",
     excerpt:
-      "200MW floating solar farm. Our team installed 46,000 piles as part of the NEXTracker system—targeting mid-2025 go-live.",
+      "MEP works for a modern commercial development, covering plumbing systems, fire protection, and coordinated building services from shell to handover.",
+    image: "/images/projects/american-resource-project.jpg",
     accent: "#EAB308",
   },
   {
     id: "p3",
     number: "03",
-    title: "Karimun Jawa Solar Farm",
-    client: "PT Perusahaan Listrik Negara (Persero)",
-    location: "Central Java, Indonesia",
+    title: "SG Bank Ghana Head Office",
+    client: "SG Bank Ghana",
+    location: "Accra, Ghana",
     excerpt:
-      "Island-grid stabilization with utility storage. Marine-grade racking across lagoon zones.",
+      "Head office build with full plumbing and fire protection scope, coordinating critical services in an occupied urban environment.",
+    image: "/images/projects/sg-bank-ghana-head-office.png",
     accent: "#EAB308",
   },
+  // {
+  //   id: "p4",
+  //   number: "04",
+  //   title: "Paiton Solar Farm",
+  //   client: "PT Perusahaan Listrik Negara (Persero)",
+  //   location: "East Java, Indonesia",
+  //   excerpt:
+  //     "A utility-scale installation with floating arrays and high-wind tracking systems.",
+  //   accent: "#EAB308",
+  // },
+  // {
+  //   id: "p5",
+  //   number: "05",
+  //   title: "Suramadu Solar Farm",
+  //   client: "PT Perusahaan Listrik Negara (Persero)",
+  //   location: "Surabaya, Indonesia",
+  //   excerpt:
+  //     "200MW floating solar farm. Our team installed 46,000 piles as part of the NEXTracker system—targeting mid-2025 go-live.",
+  //   accent: "#EAB308",
+  // },
 ];
 
 const Projects = () => {
@@ -54,7 +77,7 @@ const Projects = () => {
         </a>
       </div>
       <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 md:px-10 lg:px-16">
-        <HorizontalProjectAccordion items={projects} />
+        <HorizontalProjectAccordion items={projects} initialIndex={0} />
       </div>
       <div className="mx-auto w-full max-w-5xl px-5 pb-12 sm:px-8 md:px-10 lg:px-0">
         <MobileProjectCarousel items={projects} />

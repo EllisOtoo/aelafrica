@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./components/navigation/Navigation";
 import Footer from "./components/footer/Footer";
 import ToastProvider from "./components/ToastProvider";
+import TopContactBar from "./components/navigation/TopContactBar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
+        <TopContactBar />
         <Navigation />
         {children}
         <Footer />

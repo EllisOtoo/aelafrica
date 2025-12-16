@@ -4,8 +4,33 @@ import { useMemo, useState } from "react";
 import { portfolioProjects } from "@/app/data/projects";
 import { Filter, Search, TableProperties } from "lucide-react";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import "@splidejs/react-splide/css";
+import { Splide, SplideSlide, type SplideProps } from "@splidejs/react-splide";
 
 const ITEMS_PER_PAGE_OPTIONS = [10, 20, 30];
+
+const PROJECT_PHOTO_PLACEHOLDERS = Array.from({ length: 8 }, (_, index) => ({
+  id: `project-photo-${index + 1}`,
+  label: `Project photo ${index + 1}`,
+}));
+
+const projectCarouselOptions: SplideProps["options"] = {
+  type: "loop",
+  // autoplay: true,
+  interval: 3200,
+  speed: 700,
+  perPage: 3,
+  perMove: 1,
+  gap: "1rem",
+  arrows: true,
+  pagination: false,
+  pauseOnHover: true,
+  pauseOnFocus: true,
+  breakpoints: {
+    1024: { perPage: 2 },
+    640: { perPage: 1, gap: "0.75rem" },
+  },
+};
 
 export default function PortfolioPage() {
   const [query, setQuery] = useState("");
@@ -126,6 +151,47 @@ export default function PortfolioPage() {
 
       <section className="bg-white">
         <div className="mx-auto w-full max-w-6xl space-y-6 px-5 py-10 sm:px-8 md:px-10 lg:px-16 lg:py-16">
+          <div className="overflow-hidden rounded-3xl border border-[#F0E6D8] bg-white px-4 py-4 sm:px-6">
+            <div className="mb-3 flex items-center justify-between gap-4">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7F4511]">
+                Project photos
+              </h2>
+              {/* <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A5621C]">
+                Placeholder carousel
+              </span> */}
+            </div>
+            <Splide
+              options={projectCarouselOptions}
+              aria-label="Project photos carousel"
+            >
+              {PROJECT_PHOTO_PLACEHOLDERS.map((photo, index) => (
+                <SplideSlide key={photo.id}>
+                  <div className="relative h-48 overflow-hidden rounded-2xl border border-[#F0E6D8] bg-[#FFFDF9] sm:h-56">
+                    <div
+                      className="absolute inset-0 opacity-90"
+                      style={{
+                        background:
+                          index % 2 === 0
+                            ? "linear-gradient(135deg, #7F4511 0%, #EAA315 100%)"
+                            : "linear-gradient(135deg, #1F140C 0%, #7F4511 100%)",
+                      }}
+                      aria-hidden
+                    />
+                    <div className="relative flex h-full flex-col justify-end p-5 text-white">
+                      <div className="max-w-[18rem] rounded-2xl bg-black/25 px-4 py-3 backdrop-blur-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/80">
+                          Portfolio highlight
+                        </p>
+                        <p className="mt-2 text-base font-semibold">
+                          {photo.label}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </SplideSlide>
+              ))}
+            </Splide>
+          </div>
           <div className="flex flex-col gap-4 rounded-3xl border border-[#F0E6D8] bg-[#FFFDF9] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
               <label className="relative flex w-full items-center rounded-2xl border border-[#E0D8CC] bg-white px-3 py-2 text-sm text-[#4A3526] focus-within:border-[#7F4511]">
@@ -157,11 +223,11 @@ export default function PortfolioPage() {
               </label>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#A5621C]">
-                <TableProperties className="h-4 w-4" aria-hidden />
-              Showing {visibleProjectsCount} of {filteredProjects.length} projects
+              <TableProperties className="h-4 w-4" aria-hidden />
+              Showing {visibleProjectsCount} of {filteredProjects.length}{" "}
+              projects
             </div>
           </div>
-
           <div className="overflow-hidden rounded-3xl border border-[#F0E6D8]">
             <DataGrid
               rows={filteredProjects}

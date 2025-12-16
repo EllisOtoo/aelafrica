@@ -164,14 +164,10 @@ export default function PortfolioPage() {
               options={projectCarouselOptions}
               aria-label="Project photos carousel"
             >
-              {PROJECT_PHOTO_PLACEHOLDERS.map((photo, index) => (
+              {PROJECT_PHOTO_PLACEHOLDERS.map((photo) => (
                 <SplideSlide key={photo.id}>
                   <div className="relative h-48 overflow-hidden border border-[#F0E6D8] bg-[#FFFDF9] sm:h-56">
-                    <div
-                      className="absolute inset-0 opacity-90"
-                      style={{}}
-                      aria-hidden
-                    />
+                    <div className="absolute inset-0 opacity-90" aria-hidden />
                     <div className="relative flex h-full flex-col justify-end p-5 text-white">
                       <div className="max-w-[18rem] text-black/80 px-4 py-3 backdrop-blur-sm">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] ">

@@ -21,7 +21,7 @@ const projectCarouselOptions: SplideProps["options"] = {
   speed: 700,
   perPage: 3,
   perMove: 1,
-  gap: "1rem",
+  // gap: "1rem",
   arrows: true,
   pagination: false,
   pauseOnHover: true,
@@ -151,7 +151,7 @@ export default function PortfolioPage() {
 
       <section className="bg-white">
         <div className="mx-auto w-full max-w-6xl space-y-6 px-5 py-10 sm:px-8 md:px-10 lg:px-16 lg:py-16">
-          <div className="overflow-hidden rounded-3xl border border-[#F0E6D8] bg-white px-4 py-4 sm:px-6">
+          <div className="overflow-hidden bg-white px-4 py-4 sm:px-6">
             <div className="mb-3 flex items-center justify-between gap-4">
               <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7F4511]">
                 Project photos
@@ -166,20 +166,15 @@ export default function PortfolioPage() {
             >
               {PROJECT_PHOTO_PLACEHOLDERS.map((photo, index) => (
                 <SplideSlide key={photo.id}>
-                  <div className="relative h-48 overflow-hidden rounded-2xl border border-[#F0E6D8] bg-[#FFFDF9] sm:h-56">
+                  <div className="relative h-48 overflow-hidden border border-[#F0E6D8] bg-[#FFFDF9] sm:h-56">
                     <div
                       className="absolute inset-0 opacity-90"
-                      style={{
-                        background:
-                          index % 2 === 0
-                            ? "linear-gradient(135deg, #7F4511 0%, #EAA315 100%)"
-                            : "linear-gradient(135deg, #1F140C 0%, #7F4511 100%)",
-                      }}
+                      style={{}}
                       aria-hidden
                     />
                     <div className="relative flex h-full flex-col justify-end p-5 text-white">
-                      <div className="max-w-[18rem] rounded-2xl bg-black/25 px-4 py-3 backdrop-blur-sm">
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/80">
+                      <div className="max-w-[18rem] text-black/80 px-4 py-3 backdrop-blur-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] ">
                           Portfolio highlight
                         </p>
                         <p className="mt-2 text-base font-semibold">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SectionHero from "../components/hero/SectionHero";
+import ProductsSection from "../components/services/ProductsSection";
 
 const serviceCards = [
   {
@@ -162,6 +163,7 @@ const Services = () => {
           ))}
         </div>
       </section>
+      <ProductsSection />
     </div>
   );
 };

@@ -3,14 +3,17 @@
 import { useMemo, useState } from "react";
 import { portfolioProjects } from "@/app/data/projects";
 import { Filter, Search, TableProperties } from "lucide-react";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 
 const ITEMS_PER_PAGE_OPTIONS = [10, 20, 30];
 
 export default function PortfolioPage() {
   const [query, setQuery] = useState("");
   const [serviceFilter, setServiceFilter] = useState("all");
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [page, setPage] = useState(1);
+  const [paginationModel, setPaginationModel] = useState({
+    page: 0,
+    pageSize: 10,
+  });
 
   const services = useMemo(() => {
     const unique = Array.from(
@@ -27,40 +30,66 @@ export default function PortfolioPage() {
       const matchesQuery =
         !normalizedQuery ||
         project.description.toLowerCase().includes(normalizedQuery) ||
-        project.client.toLowerCase().includes(normalizedQuery) ||
-        project.contractValue.toLowerCase().includes(normalizedQuery);
+        project.client.toLowerCase().includes(normalizedQuery);
 
       return matchesService && matchesQuery;
     });
   }, [query, serviceFilter]);
 
-  const totalPages = Math.max(
-    1,
-    Math.ceil(filteredProjects.length / itemsPerPage)
+  const maxPage = useMemo(() => {
+    return Math.max(
+      0,
+      Math.ceil(filteredProjects.length / paginationModel.pageSize) - 1
+    );
+  }, [filteredProjects.length, paginationModel.pageSize]);
+
+  const currentPage = Math.min(paginationModel.page, maxPage);
+
+  const visibleProjectsCount = useMemo(() => {
+    const start = currentPage * paginationModel.pageSize;
+    return Math.max(
+      0,
+      Math.min(paginationModel.pageSize, filteredProjects.length - start)
+    );
+  }, [currentPage, filteredProjects.length, paginationModel.pageSize]);
+
+  const clampedPaginationModel = useMemo(
+    () => ({ ...paginationModel, page: currentPage }),
+    [currentPage, paginationModel]
   );
 
-  const currentProjects = useMemo(() => {
-    const start = (page - 1) * itemsPerPage;
-    return filteredProjects.slice(start, start + itemsPerPage);
-  }, [filteredProjects, page, itemsPerPage]);
+  const columns = useMemo<GridColDef[]>(
+    () => [
+      {
+        field: "description",
+        headerName: "Project & Location",
+        flex: 1.6,
+        minWidth: 260,
+      },
+      {
+        field: "client",
+        headerName: "Client / Consultant",
+        flex: 1.2,
+        minWidth: 220,
+      },
+      {
+        field: "service",
+        headerName: "Service Provided",
+        flex: 1.2,
+        minWidth: 220,
+      },
+    ],
+    []
+  );
 
   const handleQueryChange = (value: string) => {
     setQuery(value);
-    setPage(1);
+    setPaginationModel((current) => ({ ...current, page: 0 }));
   };
 
   const handleServiceChange = (value: string) => {
     setServiceFilter(value);
-    setPage(1);
-  };
-
-  const handleItemsPerPageChange = (value: number) => {
-    setItemsPerPage(value);
-    setPage(1);
-  };
-
-  const handlePageChange = (nextPage: number) => {
-    setPage(Math.min(Math.max(1, nextPage), totalPages));
+    setPaginationModel((current) => ({ ...current, page: 0 }));
   };
 
   return (
@@ -105,7 +134,7 @@ export default function PortfolioPage() {
                 <input
                   className="w-full bg-transparent focus:outline-none"
                   type="text"
-                  placeholder="Search by project, client, or value"
+                  placeholder="Search by project or client"
                   value={query}
                   onChange={(event) => handleQueryChange(event.target.value)}
                 />
@@ -128,90 +157,71 @@ export default function PortfolioPage() {
               </label>
             </div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#A5621C]">
-              <TableProperties className="h-4 w-4" aria-hidden />
-              Showing {currentProjects.length} of {filteredProjects.length}{" "}
-              projects
+                <TableProperties className="h-4 w-4" aria-hidden />
+              Showing {visibleProjectsCount} of {filteredProjects.length} projects
             </div>
           </div>
 
           <div className="overflow-hidden rounded-3xl border border-[#F0E6D8]">
-            <table className="min-w-full border-collapse text-left text-sm text-[#2C1404]">
-              <thead className="bg-[#7F4511] text-white">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">S/N</th>
-                  <th className="px-4 py-3 font-semibold">Project & Location</th>
-                  <th className="px-4 py-3 font-semibold">
-                    Client / Consultant
-                  </th>
-                  <th className="px-4 py-3 font-semibold">Service Provided</th>
-                  <th className="px-4 py-3 font-semibold">
-                    Final Contract Value (GHS & USD)
-                  </th>
-                  <th className="px-4 py-3 font-semibold">
-                    Completion %
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentProjects.map((project, index) => (
-                  <tr
-                    key={project.id}
-                    className={index % 2 === 0 ? "bg-[#FFF8EF]" : "bg-white"}
-                  >
-                    <td className="px-4 py-4 font-semibold text-[#7F4511]">
-                      {project.id}
-                    </td>
-                    <td className="px-4 py-4">{project.description}</td>
-                    <td className="px-4 py-4">{project.client}</td>
-                    <td className="px-4 py-4">{project.service}</td>
-                    <td className="px-4 py-4 font-semibold">
-                      {project.contractValue}
-                    </td>
-                    <td className="px-4 py-4">{project.completion}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="flex flex-col gap-4 rounded-3xl border border-[#F0E6D8] bg-[#FFFDF9] px-5 py-4 text-sm text-[#4A3526] sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <span>Rows per page:</span>
-              <select
-                className="rounded-full border border-[#E0D8CC] px-3 py-1 text-sm"
-                value={itemsPerPage}
-                onChange={(event) =>
-                  handleItemsPerPageChange(Number(event.target.value))
-                }
-              >
-                {ITEMS_PER_PAGE_OPTIONS.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex items-center gap-4">
-              <button
-                type="button"
-                className="rounded-full border border-[#E0D8CC] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#7F4511] disabled:opacity-40"
-                onClick={() => handlePageChange(page - 1)}
-                disabled={page === 1}
-              >
-                Previous
-              </button>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7F4511]">
-                Page {page} of {totalPages}
-              </span>
-              <button
-                type="button"
-                className="rounded-full border border-[#E0D8CC] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#7F4511] disabled:opacity-40"
-                onClick={() => handlePageChange(page + 1)}
-                disabled={page === totalPages}
-              >
-                Next
-              </button>
-            </div>
+            <DataGrid
+              rows={filteredProjects}
+              columns={columns}
+              getRowClassName={(params) =>
+                params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+              }
+              pagination
+              paginationModel={clampedPaginationModel}
+              onPaginationModelChange={setPaginationModel}
+              pageSizeOptions={ITEMS_PER_PAGE_OPTIONS}
+              disableRowSelectionOnClick
+              sx={{
+                border: "none",
+                "--DataGrid-containerBackground": "#7F4511",
+                "& .MuiDataGrid-columnHeaders, & .MuiDataGrid-columnHeader": {
+                  backgroundColor: "#7F4511 !important",
+                  color: "#ffffff",
+                  borderBottom: "none",
+                },
+                "& .MuiDataGrid-columnHeaderTitle": {
+                  fontWeight: 600,
+                },
+                "& .MuiDataGrid-columnSeparator": {
+                  display: "none",
+                },
+                "& .MuiDataGrid-row.even": {
+                  backgroundColor: "#FFF8EF",
+                },
+                "& .MuiDataGrid-row.odd": {
+                  backgroundColor: "#ffffff",
+                },
+                "& .MuiDataGrid-cell": {
+                  borderBottomColor: "#F0E6D8",
+                  color: "#2C1404",
+                },
+                "& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within": {
+                  outline: "none",
+                },
+                "& .MuiDataGrid-footerContainer": {
+                  borderTopColor: "#F0E6D8",
+                  backgroundColor: "#FFFDF9",
+                },
+                "& .MuiTablePagination-root": {
+                  color: "#4A3526",
+                },
+                "& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows":
+                  {
+                    fontWeight: 600,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    fontSize: "0.7rem",
+                    color: "#7F4511",
+                  },
+                "& .MuiTablePagination-actions button": {
+                  color: "#7F4511",
+                },
+              }}
+              autoHeight
+            />
           </div>
         </div>
       </section>

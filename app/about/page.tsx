@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FounderSection from "../components/about/FounderSection";
 import {
   Award,
   CheckCircle,
@@ -148,44 +149,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-16 sm:px-8 md:px-10 lg:px-16 lg:py-24">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#A5621C]">
-                What We Deliver
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#1F140C] sm:text-4xl">
-                Engineering Expertise That Powers Ghana
-              </h2>
-            </div>
-            <p className="max-w-xl text-base leading-relaxed text-[#666666]">
-              We combine multidisciplinary teams with precision planning to
-              provide solutions that are dependable, compliant, and built for
-              longevity across public and private developments.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {focusAreas.map((area, index) => (
-              <article
-                key={area.title}
-                className="flex flex-col rounded-3xl border border-[#F0F0F0] bg-[#FDFBF7] px-6 py-8 shadow-[0_16px_40px_rgba(15,23,42,0.06)]"
-              >
-                <span className="text-sm font-semibold text-[#AD7A50]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-4 text-2xl font-semibold text-[#1F140C]">
-                  {area.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#4A3526]">
-                  {area.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FounderSection />
 
       <section className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:px-10 lg:px-16 lg:py-24">
         <div className="grid gap-8 lg:grid-cols-2">

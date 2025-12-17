@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import SectionHero from "../components/hero/SectionHero";
 import ProductsSection from "../components/services/ProductsSection";
 
@@ -11,6 +12,7 @@ const serviceCards = [
     description:
       "Designing and installing pressurized water supply, sanitary stacks, pump rooms, and storage to keep facilities running safely around the clock.",
     placeholder: "#F6E3C3",
+    image: "/images/services/plumbing.jpeg",
   },
   {
     id: "02",
@@ -20,6 +22,7 @@ const serviceCards = [
     description:
       "Delivering civil works from earthworks to reinforced concrete structures, drainage, and utilities that meet public and private sector standards.",
     placeholder: "#E8DAC9",
+    image: "/images/services/civilengineering.png",
   },
   {
     id: "03",
@@ -56,6 +59,7 @@ const serviceCards = [
     description:
       "Installing firefighting piping, hydrants, hose reels, and pump assemblies so buildings are prepared and compliant with safety standards.",
     placeholder: "#F7E0B8",
+    image: "/images/services/fire.png",
   },
   {
     id: "07",
@@ -145,11 +149,22 @@ const Services = () => {
                 <p className="text-sm text-[#6B5A4A]">{service.subtitle}</p>
               </div>
 
-              <div
-                className="mt-6 h-48 w-full rounded-2xl"
-                style={{ backgroundColor: service.placeholder }}
-                aria-hidden="true"
-              />
+              {service.image ? (
+                <div className="relative mt-6 h-48 w-full overflow-hidden rounded-2xl">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <div
+                  className="mt-6 h-48 w-full rounded-2xl"
+                  style={{ backgroundColor: service.placeholder }}
+                  aria-hidden="true"
+                />
+              )}
 
               <div className="mt-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#AD7A50]">

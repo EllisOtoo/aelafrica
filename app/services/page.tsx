@@ -32,6 +32,7 @@ const serviceCards = [
     description:
       "Managing building construction and renovations with disciplined supervision to ensure timelines, safety, and workmanship stay on track.",
     placeholder: "#E4D2C2",
+    image: "/images/services/Building Construction.png",
   },
   {
     id: "04",
@@ -41,6 +42,7 @@ const serviceCards = [
     description:
       "Providing compliant electrical infrastructure, switchgear, and lighting that integrate with mechanical systems for dependable operations.",
     placeholder: "#F2E7D7",
+    image: "/images/services/electrical installations.png",
   },
   {
     id: "05",
@@ -50,6 +52,7 @@ const serviceCards = [
     description:
       "Supplying and coordinating HVAC solutions that balance comfort, airflow, and energy use across offices, hostels, and mixed-use buildings.",
     placeholder: "#E9DFD3",
+    image: "/images/services/hvac.png",
   },
   {
     id: "06",
@@ -69,6 +72,7 @@ const serviceCards = [
     description:
       "Designing solar-assisted solutions that stabilize power supply, reduce operating costs, and integrate with existing electrical systems.",
     placeholder: "#E5D5C2",
+    image: "/images/services/solar.png",
   },
   {
     id: "08",
@@ -78,6 +82,7 @@ const serviceCards = [
     description:
       "Providing scheduled maintenance and rapid response for plumbing, fire, and mechanical systems to extend asset life and reduce downtime.",
     placeholder: "#EFE4D8",
+    image: "/images/services/Maintenance.png",
   },
   {
     id: "09",
@@ -87,6 +92,7 @@ const serviceCards = [
     description:
       "Producing coordinated MEP designs and shop drawings that de-risk installations, sequencing, and approvals for complex builds.",
     placeholder: "#DDCFC2",
+    image: "/images/services/mep.png",
   },
 ];
 

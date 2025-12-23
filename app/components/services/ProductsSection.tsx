@@ -69,12 +69,7 @@ const ProductsSection = () => {
                   </p>
                 </div>
 
-                <Link
-                  href="/contact"
-                  className="mt-12 inline-flex w-fit items-center justify-center border-2 border-[#1F140C] px-8 py-3 text-sm font-bold uppercase tracking-widest text-[#1F140C] transition hover:bg-[#EAA315] hover:border-[#EAA315] hover:text-[#512807] sm:w-full lg:w-fit"
-                >
-                  Request Quote
-                </Link>
+               
               </div>
 
               {/* Right Side: Description & Image */}
@@ -94,6 +89,12 @@ const ProductsSection = () => {
                     <p className="max-w-xl text-lg leading-relaxed text-[#4A3526]">
                       {product.description}
                     </p>
+                <Link
+                  href="/contact"
+                  className="mt-12 inline-flex w-full items-center justify-center border-2 border-[#1F140C] px-8 py-3 text-sm font-bold uppercase tracking-widest text-[#1F140C] transition hover:bg-[#EAA315] hover:border-[#EAA315] hover:text-[#512807] lg:w-fit"
+                >
+                  Request Quote
+                </Link>
                   </div>
                 </div>
               </div>

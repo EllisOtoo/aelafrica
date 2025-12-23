@@ -1,93 +1,104 @@
 import Link from "next/link";
-import { ArrowRight, Package, Zap, Droplets, Fan } from "lucide-react";
+import Image from "next/image";
 
 const PRODUCTS = [
   {
-    category: "Lorem Ipsum Products",
+    title: "GRP ONE-PIECE WATER TANKS",
+    label: "Certified Quality",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    icon: Droplets,
-    items: ["Lorem Booster", "Ipsum Submersible", "Dolor Pump Set"],
+      "GRP one-piece tanks are manufactured to BS13280:2001 standard using high quality glass reinforced polyester (GRP) resins. The tanks comply with UK water supply regulations 1999 and have been tested and approved by WRAS.",
+    image: "/images/products/GRP ONE-PIECE TANKS.jpg",
   },
   {
-    category: "Dolor Sit Collection",
+    title: "EPOXY COATED STEEL TANKS",
+    label: "efusion® Technology",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-    icon: Fan,
-    items: ["Lorem Unit", "Ipsum Handling", "Dolor Exhaust"],
+      "efusion® is the brand name for Balmoral Tanks’ in-house steel panel epoxy coating. This fusion bonded epoxy treatment provides a highly resistant coating to the tank panels. Benefits include higher durability to impact, lower cost manufacturing, and a lower carbon footprint. Tested to ISO 28765:2016, AWWA D103-19, and NSF®-61 standards.",
+    image: "/images/products/EPOXY COATED STEEL TANKS.jpg",
   },
   {
-    category: "Amet Consectetur Gear",
+    title: "GLASS FUSED TO STEEL TANKS",
+    label: "Vitreous Enamel",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.",
-    icon: Zap,
-    items: ["Lorem Panel", "Ipsum Inverter", "Dolor Switch"],
+      "Balmoral’s enamel system combines the strength of steel with the corrosion and scratch resistance of glass. Fired at 830-850°C, it forms an interfacial adhesion layer for optimum purity. Tough, resilient, and chemically inactive, it remains unaffected by UV light.",
+    image: "/images/products/GLASS FUSED TO STEEL TANKS.jpg",
   },
   {
-    category: "Sed Do Essentials",
+    title: "GRP SECTIONAL WATER TANKS",
+    label: "Versatile Storage",
     description:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
-    icon: Package,
-    items: ["Lorem Ware", "Ipsum Piping", "Dolor Tank"],
+      "Sectional tanks ranging from 1m³-10,000m³ capacity, erected to a height of 4m. Designed to BSEN 13280 standards with WRAS approval for potable water. Panels are fully tested to resist pressures in excess of six times their working pressure.",
+    image: "/images/products/GRP SECTIONAL TANKS.jpg",
+  },
+  {
+    title: "ROOF STRUCTURES",
+    label: "Custom Engineering",
+    description:
+      "Wide range of roof options from simple debris-type to gas-tight digester options. Solutions include fusion bonded epoxy, stainless steel, aluminium geodesic domes, and GRP decks. All structures are designed in-house to control delivery and service demands.",
+    image: "/images/products/ROOF STRUCTURES.jpg",
   },
 ];
 
 const ProductsSection = () => {
   return (
-    <section className="bg-[#F8F6F2] py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-5 sm:px-8 md:px-10 lg:px-16">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#7F4511]">
-              Equipment & Supply
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#1F140C] sm:text-4xl">
-              High-Performance Products
-            </h2>
-            {/*  <p className="mt-4 text-base leading-relaxed text-[#666666]">
-              Beyond installation, we supply top-tier equipment ensuring your
-              systems run efficiently with durable, certified components.
-            </p> */}
-          </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.1em] text-[#7F4511] transition hover:text-[#5C2E0A]"
-          >
-            Inquire About Products
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+    <section className="bg-[#F5EFE8] py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 md:px-10 lg:px-16">
+        <div className="mb-16">
+          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#A5621C]">
+            Our Products
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#221710] sm:text-4xl">
+            Water Storage & Infrastructure Solutions
+          </h2>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PRODUCTS.map((product) => {
-            const Icon = product.icon;
-            return (
-              <div
-                key={product.category}
-                className="group flex flex-col rounded-2xl bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5EFE8] text-[#7F4511] group-hover:bg-[#7F4511] group-hover:text-white transition-colors">
-                  <Icon className="h-6 w-6" />
+        <div className="flex flex-col gap-12">
+          {PRODUCTS.map((product) => (
+            <div
+              key={product.title}
+              className="flex flex-col overflow-hidden bg-white shadow-sm lg:flex-row min-h-[400px]"
+            >
+              {/* Left Side: Title & Action */}
+              <div className="flex flex-col justify-between p-8 lg:w-5/12 lg:border-r lg:border-[#EEEEEE] lg:p-12">
+                <div>
+                  <h3 className="text-3xl font-bold leading-tight text-[#1F140C] lg:text-4xl">
+                    {product.title}
+                  </h3>
+                  <p className="mt-3 text-sm font-medium uppercase tracking-wider text-[#AD7A50]">
+                    {product.label}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-[#1F140C]">
-                  {product.category}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666666]">
-                  {product.description}
-                </p>
-                <div className="mt-auto pt-6">
-                  <ul className="space-y-2 border-t border-[#F0F0F0] pt-4 text-xs font-medium uppercase tracking-wide text-[#888888]">
-                    {product.items.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <span className="h-1 w-1 rounded-full bg-[#EAA315]" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+
+                <Link
+                  href="/contact"
+                  className="mt-12 inline-flex w-fit items-center justify-center border-2 border-[#1F140C] px-8 py-3 text-sm font-bold uppercase tracking-widest text-[#1F140C] transition hover:bg-[#EAA315] hover:border-[#EAA315] hover:text-[#512807] sm:w-full lg:w-fit"
+                >
+                  Request Quote
+                </Link>
+              </div>
+
+              {/* Right Side: Description & Image */}
+              <div className="relative flex flex-col justify-center bg-[#FDFCFB] lg:w-7/12">
+                <div className="flex h-full flex-col">
+                  {/* Image Header? Or Image embedded. Let's do half image half text for a "Premium" look within the split focus */}
+                  <div className="relative h-64 w-full lg:h-72">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-8 lg:p-12">
+                    <div className="mb-6 h-px w-16 bg-[#EAA315]" />
+                    <p className="max-w-xl text-lg leading-relaxed text-[#4A3526]">
+                      {product.description}
+                    </p>
+                  </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -95,3 +106,4 @@ const ProductsSection = () => {
 };
 
 export default ProductsSection;
+

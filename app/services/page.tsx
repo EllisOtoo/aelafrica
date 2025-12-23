@@ -66,13 +66,13 @@ const serviceCards = [
   },
   {
     id: "07",
-    title: "Solar Power Systems",
+    title: "Solar Power Design and Installation",
     subtitle: "Renewable and backup generation.",
     tagline: "Resilient energy",
     description:
       "Designing solar-assisted solutions that stabilize power supply, reduce operating costs, and integrate with existing electrical systems.",
     placeholder: "#E5D5C2",
-    image: "/images/services/solar.png",
+    image: "/images/services/solar.jpg",
   },
   {
     id: "08",
@@ -93,6 +93,26 @@ const serviceCards = [
       "Producing coordinated MEP designs and shop drawings that de-risk installations, sequencing, and approvals for complex builds.",
     placeholder: "#DDCFC2",
     image: "/images/services/mep.png",
+  },
+  {
+    id: "10",
+    title: "Supply and installation of Valves",
+    subtitle: "Specialized flow control and pressure management.",
+    tagline: "Precision flow control",
+    description:
+      "Providing specialized supply and installation of industrial-grade valves to ensure precise flow control and pressure management. Our solutions are engineered to enhance system longevity and prevent operational failures in complex networks.",
+    placeholder: "#F6E3C3",
+    image: "/images/services/Supply and installarion of Valves.jpeg",
+  },
+  {
+    id: "11",
+    title: "Water Treatment Units",
+    subtitle: "Purification and filtration for clean water supply.",
+    tagline: "Pure water solutions",
+    description:
+      "Installing comprehensive water treatment and filtration units designed to deliver clean, potable water for various applications. We utilize advanced technologies to eliminate impurities and maintain consistent water quality across all facilities.",
+    placeholder: "#E8DAC9",
+    image: "/images/services/Water Treatment Units.jpeg",
   },
 ];
 
@@ -138,7 +158,7 @@ const Services = () => {
           {serviceCards.map((service) => (
             <article
               key={service.id}
-              className="flex h-full flex-col rounded-[28px] bg-white px-6 pb-8 pt-7 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
+              className="flex h-full flex-col  bg-white px-6 pb-8 pt-7 shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
             >
               <div className="flex items-center justify-between text-sm text-[#8A8A8A]">
                 <span>({service.id})</span>
